@@ -11,7 +11,7 @@ var DB *sql.DB
 
 func InitDB() {
 	var err error
-	dsn := "root:yourpassword@tcp(127.0.0.1:3305)/workout_tracker"
+	dsn := "backenduser:Interfeci47!@tcp(localhost:3306)/workout_tracker"
 
 	DB, err = sql.Open("mysql", dsn)
 	if err != nil {
