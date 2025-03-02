@@ -2,6 +2,7 @@ import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Home from './components/Home';
+import Login from './components/Login';
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 
@@ -24,6 +25,7 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

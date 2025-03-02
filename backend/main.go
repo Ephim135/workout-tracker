@@ -34,6 +34,9 @@ func main() {
 		}
 
 		// authentication Logic
+		if req.Username == "Fabian" && req.Password == "1234" {
+			return c.JSON(fiber.Map{"message": "login successful"})
+		}
 
 		return c.Status(401).JSON(fiber.Map{"error": "Invalid credentials"})
 	})
