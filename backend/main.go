@@ -5,6 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+
+	_ "github.com/go-sql-driver/mysql" // The blank identifier makes sure the driver is initialized
 )
 
 type LoginRequest struct {
@@ -13,6 +15,8 @@ type LoginRequest struct {
 }
 
 func main() {
+	InitDB()
+
 	app := fiber.New()
 	app.Use(cors.New())
 
