@@ -1,20 +1,21 @@
-import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import About from './components/About';
-import Home from './components/Home';
-import Login from './components/Login';
-import React, { useEffect, useState } from 'react';
-import './styles.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import About from "./components/About";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import React, { useEffect, useState } from "react";
+import "./styles.css";
 
 const App: React.FC = () => {
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:3000/api/message')
+    fetch("http://127.0.0.1:3000/api/message")
       .then((response) => response.json())
       .then((data) => setMessage(data.message))
-      .catch((error) => console.error('Error fetching message:', error));
-  }, [])
+      .catch((error) => console.error("Error fetching message:", error));
+  }, []);
 
   return (
     <Router>
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </Router>
   );
