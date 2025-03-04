@@ -22,8 +22,9 @@ func InitDB() {
 	}
 
 	// dsn := "backenduser:Interfeci47!@tcp(localhost:3306)/workout_tracker"
-	dsn := fmt.Sprintf("%s:%s!@tcp(%s:%d)/%s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
 	config.Config("DB_USER"), config.Config("DB_PASSWORD"), config.Config("DB_HOST"), port, config.Config("DB_NAME"))
+	fmt.Print(dsn)
 
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
