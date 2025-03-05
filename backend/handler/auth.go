@@ -89,7 +89,6 @@ func Login(c *fiber.Ctx) error {
 		userData = UserData{
 			ID:       userModel.ID,
 			Username: userModel.Username,
-			Email:    userModel.Email,
 			Password: userModel.Password,
 		}
 	}

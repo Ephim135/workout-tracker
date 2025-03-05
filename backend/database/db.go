@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/Ephim135/workout-tracker/config"
+	"github.com/Ephim135/workout-tracker/model"
 	_ "github.com/go-sql-driver/mysql" // Import the MySQL driver
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -31,5 +32,6 @@ func InitDB() {
 		log.Fatal("Failed to connect to databe:", err)
 	}
 
+	DB.AutoMigrate(&model.User{})
 	log.Println("Connected to MySQL!")
 }
