@@ -100,6 +100,7 @@ func CreateUser(c *fiber.Ctx) error {
 		"status": "success",
 		"message": "created User",
 		"data": newUser,
+		"success": true,
 	})
 }
 
