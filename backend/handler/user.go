@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"strconv"
 
 	"github.com/Ephim135/workout-tracker/database"
@@ -16,14 +17,17 @@ func hashPassword(password string) (string, error) {
 }
 
 func validToken(t *jwt.Token, id string) bool {
+	fmt.Println(id)
 	n, err := strconv.Atoi(id)
 	if err != nil {
+		fmt.Println("XXXXXXXX")
 		return false
 	}
 
 	claims := t.Claims.(jwt.MapClaims)
 	uid := int(claims["user_id"].(float64))
 	
+	fmt.Println("uid:", uid, "n:",  n)
 	return uid == n
 }
 

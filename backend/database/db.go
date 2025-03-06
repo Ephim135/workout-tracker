@@ -23,15 +23,21 @@ func InitDB() {
 	}
 
 	// dsn := "backenduser:Interfeci47!@tcp(localhost:3306)/workout_tracker"
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&charset=utf8mb4&collation=utf8mb4_unicode_ci",
 	config.Config("DB_USER"), config.Config("DB_PASSWORD"), config.Config("DB_HOST"), port, config.Config("DB_NAME"))
-	fmt.Print(dsn)
 
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to databe:", err)
 	}
 
-	DB.AutoMigrate(&model.User{})
-	log.Println("Connected to MySQL!")
+	if err := DB.Migrator().DropTable(&model.User{}); err != nil {
+		log.Println("Error dropping users table", err)
+	}
+
+	if err := DB.AutoMigrate(&model.User{}); err != nil {
+		log.Println("Error Migrate User Table", err)
+	}
+
+	log.Println("Connected to MySQL! // Migrate successful")
 }
