@@ -26,38 +26,46 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <label htmlFor="uname">Username</label>
-      <input
-        type="text"
-        placeholder="Enter Username"
-        name="uname"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
+    <div className="border border-danger d-flex flex-column align-items-start container p-3">
+      <label className="d-flex align-items-center gap-2 mb-2" htmlFor="uname">
+        Username
+        <input
+          className="flex-grow-1 form-control"
+          type="text"
+          placeholder="Enter Username"
+          name="uname"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+      </label>
 
-      <label htmlFor="psw">Pasword</label>
-      <input
-        type="password"
-        placeholder="Enter Password"
-        name="psw"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
+      <label htmlFor="psw">
+        Pasword
+        <input
+          className="flex-grow-1 form-control"
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <label htmlFor="email">
+        Email
+        <input
+          className="flex-grow-1 form-control"
+          type="email"
+          placeholder="Enter Email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </label>
 
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        placeholder="Enter Email"
-        name="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-
-      <button type="submit" onClick={handleSubmit}>
+      <button className="btn btn-primary" type="submit" onClick={handleSubmit}>
         Register
       </button>
     </div>
