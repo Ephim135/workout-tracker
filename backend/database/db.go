@@ -31,10 +31,12 @@ func InitDB() {
 		log.Fatal("Failed to connect to databe:", err)
 	}
 
+	// Deletes user Table
 	if err := DB.Migrator().DropTable(&model.User{}); err != nil {
 		log.Println("Error dropping users table", err)
 	}
 
+	// Creates new user Table
 	if err := DB.AutoMigrate(&model.User{}); err != nil {
 		log.Println("Error Migrate User Table", err)
 	}
