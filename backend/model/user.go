@@ -9,4 +9,5 @@ type User struct {
 	Email    string `gorm:"type:varchar(255);uniqueIndex;not null" json:"email"`
 	Password string `gorm:"type:text;not null" json:"password"`
 	Names    string `gorm:"type:text" json:"names"`
+	Workouts []Workout `gorm:"foreignKey:UserID" json:"workouts"`
 }

@@ -41,5 +41,21 @@ func InitDB() {
 		log.Println("Error Migrate User Table", err)
 	}
 
+	if err := DB.AutoMigrate(&model.Exercise{}); err != nil {
+		log.Println("Error Migrate Exercise Table", err)
+	}
+
+	if err := DB.AutoMigrate(&model.ExerciseEntry{}); err != nil {
+		log.Println("Error Migrate Exercise Table", err)
+	}
+
+	if err := DB.AutoMigrate(&model.Workout{}); err != nil {
+		log.Println("Error Migrate Exercise Table", err)
+	}
+
+	if err := DB.AutoMigrate(&model.WorkoutSet{}); err != nil {
+		log.Println("Error Migrate Exercise Table", err)
+	}
+
 	log.Println("Connected to MySQL! // Migrate successful")
 }
