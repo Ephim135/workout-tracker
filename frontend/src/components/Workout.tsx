@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-
-interface ExerciseCardProps {
-  name: string;
-  description: string;
-  image: string;
-}
+import ExerciseCard from "./ExerciseCard";
 
 interface Exercise {
   id: number;
@@ -25,39 +20,17 @@ const allExercises: Exercise[] = [
     id: 2,
     name: "Squat",
     description: "Builds leg and glute strength.",
-    image: "https://source.unsplash.com/200x200/?squat",
+    image:
+      "http://ecalegal.com/beta/wp-content/uploads/2014/03/placeholder-200x200.jpg",
   },
   {
     id: 3,
     name: "Deadlift",
     description: "Works the entire posterior chain.",
-    image: "https://source.unsplash.com/200x200/?deadlift",
+    image:
+      "http://ecalegal.com/beta/wp-content/uploads/2014/03/placeholder-200x200.jpg",
   },
 ];
-
-const ExerciseCard: React.FC<ExerciseCardProps> = ({
-  name,
-  description,
-  image,
-}) => {
-  return (
-    <div className="d-flex flex-column justify-content-center align-items-center p-4 w-auto text-black mb-3 bg-secondary">
-      <h2 className="text-xl font-bold mt-2">{name}</h2>
-      <img
-        src={image}
-        alt={name}
-        className="w-full h-40 object-cover rounded-md"
-      />
-      <p className="text-sm text-gray-300 mt-1">{description}</p>
-      <input
-        className="btn btn-primary btn-lg mx-auto d-block"
-        type="button"
-        value="Add Exercise to Workout"
-        name="addExerciseButton"
-      />
-    </div>
-  );
-};
 
 const Workout: React.FC = () => {
   const [exercises, setExercises] = useState<Exercise[]>([]);
@@ -69,7 +42,7 @@ const Workout: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="container d-flex">
       {exercises.length == 0 ? (
         <label htmlFor="addExerciseButton">
           <input
@@ -81,13 +54,15 @@ const Workout: React.FC = () => {
           />
         </label>
       ) : (
-        exercises.map((exercise: Exercise) => (
-          <ExerciseCard
-            name={exercise.name}
-            description={exercise.description}
-            image={exercise.image}
-          />
-        ))
+        <div className="card-deck">
+          {exercises.map((exercise: Exercise) => (
+            <ExerciseCard
+              name={exercise.name}
+              description={exercise.description}
+              image={exercise.image}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

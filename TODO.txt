@@ -2,3 +2,10 @@
 readme
 graphics
 videos
+Wokout Schema
+
+User has many Workouts
+Workout has many exercises and sets
+
+There have to be Saved Workouts too with data from past exercises
+

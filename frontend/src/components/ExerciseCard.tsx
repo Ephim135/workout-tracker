@@ -12,20 +12,23 @@ const ExerciseCard: React.FC<ExerciseCardProps> = ({
   image,
 }) => {
   return (
-    <div className="d-flex flex-column justify-content-center align-items-center p-4 w-auto text-black mb-3 bg-secondary">
-      <h2 className="text-xl font-bold mt-2">{name}</h2>
+    <div className="card d-flex flex-column align-items-center">
       <img
         src={image}
         alt={name}
-        className="w-full h-40 object-cover rounded-md"
+        className="card-img-top p-2 rounded-3"
+        style={{ width: "200px", height: "200px" }}
       />
-      <p className="text-sm text-gray-300 mt-1">{description}</p>
-      <input
-        className="btn btn-primary btn-lg mx-auto d-block"
-        type="button"
-        value="addExercise"
-        name="addExerciseButton"
-      />
+      <div className="card-body">
+        <h5 className="card-title">{name}</h5>
+        <p className="card-text">{description}</p>
+        <input
+          className="btn btn-primary btn-lg mx-auto d-block"
+          type="button"
+          value="addExercise"
+          name="addExerciseButton"
+        />
+      </div>
     </div>
   );
 };

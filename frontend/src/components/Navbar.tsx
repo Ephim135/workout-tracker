@@ -3,22 +3,23 @@ import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="container-fluid">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-        <li>
+    <div className="container">
+      <nav className="navbar d-flex justify-content-between rounded-3 my-3 p-3">
+        <span className="navbar-brand text-white">Peryton</span>
+        <Link className="" to="/">
+          Home
+        </Link>
+        <Link className="" to="/workout">
+          Workout
+        </Link>
+        <div className="">
           <Link to="/register">Register</Link>
-        </li>
-        <li>
-          <Link to="/workout">Workout</Link>
-        </li>
-      </ul>
-    </nav>
+          <Link className="mx-3" to="/login">
+            Login
+          </Link>
+        </div>
+      </nav>
+    </div>
   );
 };
 

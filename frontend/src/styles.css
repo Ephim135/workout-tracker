@@ -2,14 +2,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: rgb(203, 200, 200);
+  background-color: rgb(214, 216, 212);
 }
 
 nav {
-  background-color: #333;
+  background-color: #333333;
   color: white;
-  padding: 10px 0;
-  text-align: center;
 }
 
 ul {
@@ -18,29 +16,15 @@ ul {
   padding: 0;
 }
 
-li {
-  display: inline;
-  margin: 0 15px;
-}
-
 a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-h1 {
-  color: #333;
-  text-align: center;
-  margin-top: 20px;
-}
-
-div {
-  /* max-width: 800px; */
-  margin: 0 auto;
-  border-radius: 8px;
+.card {
+  width: 250px;
 }
