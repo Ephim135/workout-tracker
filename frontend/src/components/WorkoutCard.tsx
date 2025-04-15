@@ -1,3 +1,5 @@
+import WorkoutSetRow from "./WorkoutSetRow";
+
 type WorkoutCardProps = {
   name: string;
 };
@@ -17,6 +19,11 @@ function WorkoutCard({ name }: WorkoutCardProps) {
         <h3>Reps</h3>
         <h3>Weight</h3>
       </div>
+      <WorkoutSetRow />
+      {/* remove set and move set to different location */}
+      {/* How do i get the correct grid layout for each row of the Sets   */}
+      <button>Add Set</button>
+      <button>Copy Last Workout</button>
     </div>
   );
 }
