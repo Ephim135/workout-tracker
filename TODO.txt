@@ -1,11 +1,2 @@
-404 Not found
-readme
-graphics
-videos
-Wokout Schema
-
-User has many Workouts
-Workout has many exercises and sets
-
-There have to be Saved Workouts too with data from past exercises
-
+Workout Selection
+get a set of 10 exercises to choose from
