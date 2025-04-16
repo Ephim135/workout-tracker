@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav className="bg-gray-500 flex items-center justify-between h-16 px-6 mt-2 rounded mb-6">
-      <a className="font-bold text-xl">LOGO</a>
-      <div className="flex space-x-6 text-xl">
+    <nav className="relative mt-2 mb-6 flex h-16 items-center justify-between rounded bg-gray-500 px-6">
+      <a className="text-xl font-bold">LOGO</a>
+      <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 space-x-6 text-xl">
         <Link to={"/"}>Home</Link>
         <Link to={"/workout"}>Workout</Link>
         <Link to={"/about"}>About</Link>
@@ -12,13 +12,13 @@ const Navbar = () => {
       <div className="flex space-x-4">
         <Link
           to={"/login"}
-          className="bg-blue-400 text-black px-3 py-1 rounded hover:bg-blue-600"
+          className="rounded bg-blue-400 px-3 py-1 text-black hover:bg-blue-600"
         >
           Login
         </Link>
         <Link
           to={"/register"}
-          className="bg-blue-400 text-black px-3 py-1 rounded hover:bg-blue-600"
+          className="rounded bg-blue-400 px-3 py-1 text-black hover:bg-blue-600"
         >
           Register
         </Link>

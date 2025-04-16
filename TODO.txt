@@ -1,2 +1,10 @@
 Workout Selection
 get a set of 10 exercises to choose from
+
+Workout Card
+-move set to different location
+-copy workout from last workout
+
+Login / Register
+-Make the Site maby with
+-Hook up Backend
