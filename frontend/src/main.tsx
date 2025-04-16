@@ -8,6 +8,8 @@ import Layout from "./Layout.tsx";
 import Home from "./pages/Home.tsx";
 import Workout from "./pages/Workout.tsx";
 import WorkoutSelection from "./pages/WorkoutSelection.tsx";
+import Login from "./pages/Login.tsx";
+import Register from "./pages/Register.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +21,8 @@ const router = createBrowserRouter([
       { path: "/game", element: <GameCanvas /> },
       { path: "/workout", element: <Workout /> },
       { path: "/workoutSelection", element: <WorkoutSelection /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
 ]);
@@ -26,5 +30,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
