@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LoginRegister from "./LoginRegister";
 
 const Navbar = () => {
   return (
@@ -15,20 +16,7 @@ const Navbar = () => {
           About
         </Link>
       </div>
-      <div className="flex space-x-4">
-        <Link
-          to={"/login"}
-          className="rounded bg-blue-400 px-3 py-1 text-black hover:bg-blue-600"
-        >
-          Login
-        </Link>
-        <Link
-          to={"/register"}
-          className="rounded bg-blue-400 px-3 py-1 text-black hover:bg-blue-600"
-        >
-          Register
-        </Link>
-      </div>
+      <LoginRegister></LoginRegister>
     </nav>
   );
 };
