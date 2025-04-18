@@ -1,5 +1,6 @@
 Workout Selection
-get a set of 10 exercises to choose from
+-make a list of exercises to choose from
+-make a workout Planer with exercises sets etc.
 
 Workout Card
 -move set to different location
@@ -8,3 +9,8 @@ Workout Card
 Login / Register
 -Make the Site maby with
 -Hook up Backend
+-save jwt
+-show clearly that u are logged in
+
+Profile Page
+-

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -10,6 +11,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const login = async (email: string, password: string) => {
     try {
@@ -22,6 +24,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!res.ok) throw new Error("Login failed");
 
       setIsLoggedIn(true);
+      navigate("/profile");
     } catch (err) {
       console.error("Login error:", err);
       alert("Login failed: Invalid credentials");

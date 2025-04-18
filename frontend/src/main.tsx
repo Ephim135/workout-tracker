@@ -9,8 +9,8 @@ import Home from "./pages/Home.tsx";
 import Workout from "./pages/Workout.tsx";
 import WorkoutSelection from "./pages/WorkoutSelection.tsx";
 import Login from "./pages/Login.tsx";
+import Profile from "./pages/Profile.tsx";
 import Register from "./pages/Register.tsx";
-import { AuthProvider } from "./context/AuthContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,14 +24,13 @@ const router = createBrowserRouter([
       { path: "/workoutSelection", element: <WorkoutSelection /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/profile", element: <Profile /> },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <RouterProvider router={router} />
   </StrictMode>,
 );
