@@ -1,6 +1,8 @@
 Workout Selection
 -make a list of exercises to choose from
 -make a workout Planer with exercises sets etc.
+    -Exercises
+        - Make backend Logic to get Exercsises so u can show them on the frontend
 
 Workout Card
 -move set to different location
@@ -13,4 +15,32 @@ Login / Register
 -show clearly that u are logged in
 
 Profile Page
--
+-Basic Info
+    - name
+    - picture
+    - age / gender
+    - Height / weight (possibly with history progress chart)
+    - Fitness Goal
+- Progress Stats
+    - Current Streak
+    - total workouts
+    - best lifts (PRs)
+    - Body weight history
+    - calories burned
+- Workout Summary
+    - fav exercises
+    - most trained muscles
+    - weekly monthly chart
+    - muscle heat map
+- Goals Achievments
+    - Badges / milestones
+    - Current goals
+    - Goal progress tracking
+- Account Settings
+    - Edit personal Info
+    - Unit preferences
+    - Dark / light mode
+    - Delete Account
+- Community Info
+
+
