@@ -13,10 +13,14 @@ import (
 
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{
+		AppName: "Workout-Tracker API",
+	})
+
 	app.Use(cors.New()) // Cross Origin Resource Sharing
 
 	database.InitDB()
+
 	router.SetupRoutes(app)
 
 	log.Fatal(app.Listen(":3000"))

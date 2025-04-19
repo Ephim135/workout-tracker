@@ -21,8 +21,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) throw new Error("Login failed");
 
+      localStorage.setItem("jwt", data.data);
       setIsLoggedIn(true);
       navigate("/profile");
     } catch (err) {
@@ -31,7 +34,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = () => setIsLoggedIn(false);
+  const logout = () => {
+    navigate("/login");
+    setIsLoggedIn(false);
+  };
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
