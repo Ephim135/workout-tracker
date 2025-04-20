@@ -177,17 +177,11 @@ func DeleteUser(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"status": "success", "message": "User deleted successful", "data": nil})
 }	
 
+func GetAllUsers(c *fiber.Ctx) error {
+	db := database.DB
 
+	var users []model.User
+	db.Find(&users)
 
-
-
-
-
-
-
-
-
-
-
-
-
+	return c.JSON(fiber.Map{"status": "success", "message": "successful return all users", "data": users})
+}

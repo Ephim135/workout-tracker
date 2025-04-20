@@ -18,10 +18,6 @@ func SetupRoutes(app *fiber.App) {
 	auth := api.Group("/auth")
 	auth.Post("/login", handler.Login)
 
-	// message test
-	message := api.Group("/message") 
-	message.Get("/", handler.Message)
-
 	// User
 	user := api.Group("/user")
 	user.Get("/:id", handler.GetUser)
@@ -30,6 +26,7 @@ func SetupRoutes(app *fiber.App) {
 	user.Delete("/:id", middleware.Protected(), handler.DeleteUser)
 
 	// Exercises
-	// exercise := api.Group("/exercises")
-	// exercise.Get("/:id", handler.GetExercise)
+	exercise := api.Group("/exercise")
+	exercise.Get("/:id", handler.GetExercise)
+	exercise.Get("/", handler.GetAllExercise)
 }

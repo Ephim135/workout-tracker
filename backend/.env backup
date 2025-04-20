@@ -1,0 +1,6 @@
+DB_PORT=3000
+DB_USER=backenduser
+DB_PASSWORD=Interfeci47!
+DB_HOST=localhost
+DB_NAME=workout_tracker
+SECRET_KEY=9aed8a57bb29bd2479f444baf503b417c5ffbb69fdd94860df8eb70c8d1a095d

@@ -57,13 +57,14 @@ func Login(c *fiber.Ctx) error {
 		Identity string `json:"identity"`
 		Password string `json:"password"`
 	}
+
 	type UserData struct {
 		ID       uint   `json:"id"`
 		Username string `json:"username"`
 		Email    string `json:"email"`
 		Password string `json:"password"`
 	}
-	input := new(LoginInput)
+	input := new(LoginInput) // is of type *LoginInput a pointer to an initilaized struct not nil
 	var userData UserData
 
 	if err := c.BodyParser(&input); err != nil {
@@ -75,7 +76,7 @@ func Login(c *fiber.Ctx) error {
 	userModel := new(model.User)
 	var err error
 
-	if isEmail(identity) {
+	if isEmail(identity) { // check if user entered email or username
 		userModel, err = getUserByEmail(identity)
 	} else {
 		userModel, err = getUserByUsername(identity)
@@ -97,17 +98,32 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"status": "error", "message": "Invalid identity or password", "data": nil})
 	}
 
-	token := jwt.New(jwt.SigningMethodHS256)
-
-	claims := token.Claims.(jwt.MapClaims)
-	claims["username"] = userData.Username
-	claims["user_id"] = userData.ID
-	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
-
-	t, err := token.SignedString([]byte(config.Config("SECRET")))
+	token, err := GenerateAccessToken(userData.ID, userData.Username)
 	if err != nil {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
-	return c.JSON(fiber.Map{"status": "success", "message": "Success login", "data": t})
+	return c.JSON(fiber.Map{"status": "success", "message": "Success login", "data": token})
+}
+
+func GenerateAccessToken(userID uint, userName string) (string, error) {
+	claims := jwt.MapClaims{
+		"username": userName,
+		"sub": userID,
+		"exp": time.Now().Add(time.Minute * 8).Unix(), // 8 minutes
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(config.Config("SECRET_KEY")))
+}
+
+func GenerateRefreshToken(userID, userName string) (string, error) {
+	claims := jwt.MapClaims{
+		"username": userName,
+		"sub": userID,
+		"exp": time.Now().Add(time.Hour * 30 * 24).Unix(), // 30 days
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(config.Config("SECRET_KEY_REFRESH_TOKEN")))
 }

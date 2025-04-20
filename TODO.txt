@@ -9,9 +9,10 @@ Workout Card
 -copy workout from last workout
 
 Login / Register
--decide about JWT use 2 or one only ?
+-decide if using 2 or 1 JWT ✅
 -make cookies send them use them for (authentication vs authorization)
 -show clearly that u are logged in
+-Axios interceptors or fetch wrappers 
 
 Profile Page
 -Basic Info
@@ -43,3 +44,6 @@ Profile Page
 - Community Info
 
 
+Key combos i want to learn
+space s f // open file
+space 
