@@ -9,9 +9,8 @@ Workout Card
 -copy workout from last workout
 
 Login / Register
--Make the Site maby with
--Hook up Backend
--save jwt
+-decide about JWT use 2 or one only ?
+-make cookies send them use them for (authentication vs authorization)
 -show clearly that u are logged in
 
 Profile Page
