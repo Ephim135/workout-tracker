@@ -13,6 +13,7 @@ Login / Register
 -make cookies send them use them for (authentication vs authorization)
 -show clearly that u are logged in
 -Axios interceptors or fetch wrappers 
+-make /api/refresh end point
 
 Profile Page
 -Basic Info

@@ -29,4 +29,7 @@ func SetupRoutes(app *fiber.App) {
 	exercise := api.Group("/exercise")
 	exercise.Get("/:id", handler.GetExercise)
 	exercise.Get("/", handler.GetAllExercise)
+
+	// Refresh
+	api.Get("/refresh", handler.Refresh)
 }

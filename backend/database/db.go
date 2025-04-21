@@ -57,6 +57,10 @@ func InitDB() {
 		log.Println("Error Migrate WorkoutSet Table", err)
 	}
 
+	if err := DB.AutoMigrate(&model.RefreshToken{}); err != nil {
+		log.Println("Error Migrate RefreshToken Table", err)
+	}
+
 	log.Println("Connected to MySQL! // Migrate successful")
 
 	SeedExercises(DB)

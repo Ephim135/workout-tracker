@@ -17,7 +17,11 @@ func main() {
 		AppName: "Workout-Tracker API",
 	})
 
-	app.Use(cors.New()) // Cross Origin Resource Sharing
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "http://localhost:5173", //React Vite dev server
+		AllowCredentials: true, // for cookies
+		AllowHeaders: "Content-Type", // allow JSON Headers
+	})) // Cross Origin Resource Sharing
 
 	database.InitDB()
 

@@ -19,13 +19,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        credentials: "include",
       });
-
-      const data = await res.json();
 
       if (!res.ok) throw new Error("Login failed");
 
-      localStorage.setItem("jwt", data.data);
       setIsLoggedIn(true);
       navigate("/profile");
     } catch (err) {
