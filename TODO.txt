@@ -1,5 +1,20 @@
+Backend
+Login / Register
+-decide if using 2 or 1 JWT ✅
+-make cookies send them use them for (authentication vs authorization)
+-show clearly that u are logged in
+-Axios interceptors or fetch wrappers 
+-make /api/refresh end point
+
+Frontend
+- Navbar is bad on small devices
+
 Workout Selection
+1. render workout Selection if workout is empty
+2.  
+
 -make a list of exercises to choose from
+-
 -make a workout Planer with exercises sets etc.
     -Exercises
         - Make backend Logic to get Exercsises so u can show them on the frontend
@@ -7,13 +22,6 @@ Workout Selection
 Workout Card
 -move set to different location
 -copy workout from last workout
-
-Login / Register
--decide if using 2 or 1 JWT ✅
--make cookies send them use them for (authentication vs authorization)
--show clearly that u are logged in
--Axios interceptors or fetch wrappers 
--make /api/refresh end point
 
 Profile Page
 -Basic Info
