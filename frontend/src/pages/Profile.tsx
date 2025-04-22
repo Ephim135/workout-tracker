@@ -24,7 +24,7 @@ function Profile() {
         if (!res.ok) throw new Error("Failed to fetch profile");
 
         const data = await res.json();
-        setProfile(data);
+        setProfile(data.data);
       } catch (err) {
         console.error("Error fetching profile:", err);
         // Optionally redirect to login or show a message
