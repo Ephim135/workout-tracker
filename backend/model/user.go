@@ -11,5 +11,11 @@ type User struct {
 	Email    string `gorm:"type:varchar(255);uniqueIndex;not null" json:"email"`
 	Password string `gorm:"type:text;not null" json:"password"`
 	Names    string `gorm:"type:text" json:"names"`
-	Workouts []Workout `gorm:"foreignKey:UserID" json:"workouts"`
+
+	// Profile info
+	Age    int     `gorm:"type:int" json:"age"`
+	Gender string  `gorm:"type:varchar(50)" json:"gender"`
+	Height float64 `gorm:"type:float" json:"height"`
+	Weight float64 `gorm:"type:float" json:"weight"`
+	Goal   string  `gorm:"type:text" json:"goal"`
 }

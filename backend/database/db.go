@@ -14,6 +14,24 @@ import (
 
 var DB *gorm.DB
 
+var modelsDrop = []interface{}{ // expected declaration found modelsDrop
+	&model.User{},
+	&model.RefreshToken{},
+	&model.Exercise{},
+	&model.ExerciseEntry{},
+	&model.Workout{},
+	&model.WorkoutSet{},
+}
+
+var models = []interface{}{
+	&model.User{},
+	&model.RefreshToken{},
+	&model.Exercise{},
+	&model.ExerciseEntry{},
+	&model.Workout{},
+	&model.WorkoutSet{},
+}
+
 func InitDB() {
 	var err error
 	p := config.Config("DB_PORT")
@@ -26,42 +44,29 @@ func InitDB() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true&charset=utf8mb4&collation=utf8mb4_unicode_ci",
 	config.Config("DB_USER"), config.Config("DB_PASSWORD"), config.Config("DB_HOST"), port, config.Config("DB_NAME"))
 
+
 	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to databe:", err)
 	}
 
-	// Deletes user Table
-	if err := DB.Migrator().DropTable(&model.User{}); err != nil {
-		log.Println("Error dropping users table", err)
+	// Dropping Tabels
+	for _, model := range modelsDrop {
+		if err := DB.Migrator().DropTable(model); err != nil {
+			log.Printf("Error dropping Table for %T: %s", model, err)
+		}
 	}
 
-	// Creates new user Table
-	if err := DB.AutoMigrate(&model.User{}); err != nil {
-		log.Println("Error Migrate User Table", err)
-	}
-
-	if err := DB.AutoMigrate(&model.Exercise{}); err != nil {
-		log.Println("Error Migrate Exercise Table", err)
-	}
-
-	if err := DB.AutoMigrate(&model.ExerciseEntry{}); err != nil {
-		log.Println("Error Migrate ExerciseEntry Table", err)
-	}
-
-	if err := DB.AutoMigrate(&model.Workout{}); err != nil {
-		log.Println("Error Migrate Workout Table", err)
-	}
-
-	if err := DB.AutoMigrate(&model.WorkoutSet{}); err != nil {
-		log.Println("Error Migrate WorkoutSet Table", err)
-	}
-
-	if err := DB.AutoMigrate(&model.RefreshToken{}); err != nil {
-		log.Println("Error Migrate RefreshToken Table", err)
+	// Migrating Tables
+	for _, model := range models {
+		if err := DB.AutoMigrate(model); err != nil {
+			log.Printf("Error Migrate Table for %T: %s",model, err)
+		}
 	}
 
 	log.Println("Connected to MySQL! // Migrate successful")
 
+	// add Data to DB
 	SeedExercises(DB)
 }
+

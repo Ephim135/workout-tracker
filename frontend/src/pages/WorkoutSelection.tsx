@@ -23,8 +23,6 @@ function WorkoutSelection() {
 
         const data = await res.json();
         setExercises(data.data);
-        console.log(data);
-        console.log(exercises);
       } catch (err) {
         console.error("Error fetch exercise:", err);
       }

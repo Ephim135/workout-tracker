@@ -26,6 +26,7 @@ const Register: React.FC = () => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           username,
           email,
@@ -45,6 +46,7 @@ const Register: React.FC = () => {
       setPassword("");
       setConfirm("");
     } catch (err) {
+      console.log(err);
       setError("Something went wrong. Try again.");
     }
   };

@@ -18,9 +18,10 @@ func main() {
 	})
 
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173", //React Vite dev server
+		AllowOrigins: "http://localhost:5173, http://127.0.0.1:5173",  //React Vite dev server
 		AllowCredentials: true, // for cookies
-		AllowHeaders: "Content-Type", // allow JSON Headers
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization", // allow JSON Headers
+		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
 	})) // Cross Origin Resource Sharing
 
 	database.InitDB()

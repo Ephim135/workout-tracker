@@ -1,13 +1,18 @@
 Backend
 Login / Register
 -decide if using 2 or 1 JWT ✅
--make cookies send them use them for (authentication vs authorization)
--show clearly that u are logged in
+-make cookies send them use them for (authentication vs authorization) ✅
+-show clearly that u are logged in 
 -Axios interceptors or fetch wrappers 
 -make /api/refresh end point
 
+Database
+- make migrate and Drop table scalable ✅
+
 Frontend
 - Navbar is bad on small devices
+
+LeaderBoard 
 
 Workout Selection
 1. render workout Selection if workout is empty
