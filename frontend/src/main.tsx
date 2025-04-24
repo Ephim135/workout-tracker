@@ -11,6 +11,7 @@ import WorkoutSelection from "./pages/WorkoutSelection.tsx";
 import Login from "./pages/Login.tsx";
 import Profile from "./pages/Profile.tsx";
 import Register from "./pages/Register.tsx";
+import ProfileForm from "./pages/ProfileForm.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/profile", element: <Profile /> },
+      { path: "/profileForm", element: <ProfileForm /> },
     ],
   },
 ]);

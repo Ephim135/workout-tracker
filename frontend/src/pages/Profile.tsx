@@ -16,7 +16,7 @@ function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:3000/api/user/1", {
+        const res = await fetch(import.meta.env.VITE_API_URL + "/api/user/1", {
           method: "GET",
           credentials: "include", // <-- this is key to include the cookie
         });

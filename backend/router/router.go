@@ -17,10 +17,11 @@ func SetupRoutes(app *fiber.App) {
 	//Auth
 	auth := api.Group("/auth")
 	auth.Post("/login", handler.Login)
+	auth.Post("/logout", handler.Logout)
 
 	// User
 	user := api.Group("/user")
-	user.Get("/:id", handler.GetUser)
+	user.Get("/:id?", handler.GetUser) // optional id if no id JWT userID is used
 	user.Post("/", handler.CreateUser)
 	user.Patch("/:id", middleware.Protected(), handler.UpdateUser)
 	user.Delete("/:id", middleware.Protected(), handler.DeleteUser)

@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+function wait(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const { login } = useAuth();
 
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +27,8 @@ const Register: React.FC = () => {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:3000/api/user/", {
+      const url = import.meta.env.VITE_API_URL + "/user/";
+      const res = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,11 +47,10 @@ const Register: React.FC = () => {
         return;
       }
 
-      setSuccess("Account created! You can now log in.");
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirm("");
+      setSuccess("Account created! You now will get logged in.");
+
+      await wait(2000); // wait 2 seconds
+      await login(email, password);
     } catch (err) {
       console.log(err);
       setError("Something went wrong. Try again.");
