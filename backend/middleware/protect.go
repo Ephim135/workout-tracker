@@ -6,7 +6,6 @@ import (
 	"github.com/Ephim135/workout-tracker/config"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
-	"golang.org/x/crypto/bcrypt"
 )
 
 func Protected() fiber.Handler{
@@ -43,18 +42,10 @@ func Protected() fiber.Handler{
 		}
 		userID := fmt.Sprintf("%v", claims["id"])
 
-		// Get hashed token from DB and compare TODO
-		storedHash, err := database.GetTokenHashForUser(userID) // implement this
-		if err != nil || bcrypt.CompareHashAndPassword([]byte(storedHash), []byte(tokenStr)) != nil {
-			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
-				"error": "Token does not match stored token",
-			})
-		}
-
 		// Set claims in context
 		c.Locals("userID", userID)
-		c.Locals("tokenClaims", claims)
+		c.Locals("tokenClaims", claims) // set remaining claims as list
 
-		return c.Next()
+		return c.Next() // go to next middleware or final handler without it would stop here
 	}
 }
