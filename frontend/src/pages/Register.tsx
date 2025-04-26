@@ -49,7 +49,7 @@ const Register: React.FC = () => {
 
       setSuccess("Account created! You now will get logged in.");
 
-      await wait(2000); // wait 2 seconds
+      await wait(1500); // wait 2 seconds
       await login(email, password);
     } catch (err) {
       console.log(err);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { apiFetch } from "../api/api";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({
@@ -19,15 +20,12 @@ function ProfileForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // You can adjust the URL below
-    const res = await fetch("/api/profile", {
-      method: "POST",
+    const res = await apiFetch("/user/", {
+      method: "PATCH",
+      credentials: "include",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...profile,
-        age: parseInt(profile.age),
-        height: parseFloat(profile.height),
-        weight: parseFloat(profile.weight),
       }),
     });
     if (res.ok) alert("Profile saved!");
@@ -37,7 +35,7 @@ function ProfileForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto max-w-sm space-y-3 rounded bg-white p-4 shadow"
+      className="mx-auto max-w-sm space-y-3 rounded p-4 shadow"
     >
       <input
         type="number"
@@ -51,7 +49,7 @@ function ProfileForm() {
         name="gender"
         value={profile.gender}
         onChange={handleChange}
-        className="w-full rounded border p-2"
+        className="w-full rounded border bg-gray-700 p-2"
       >
         <option value="">Select gender</option>
         <option value="Male">Male</option>

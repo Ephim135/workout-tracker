@@ -6,6 +6,11 @@ Login / Register
 -Axios interceptors or fetch wrappers 
 -make /api/refresh end point
 
+Protected middleware
+-do i want to make 2 different functions for access and refresh token or just check
+wich one i should use ?
+
+
 Database
 - make migrate and Drop table scalable ✅
 

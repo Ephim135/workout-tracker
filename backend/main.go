@@ -21,7 +21,7 @@ func main() {
 		AllowOrigins: "http://localhost:5173, http://127.0.0.1:5173",  //React Vite dev server
 		AllowCredentials: true, // for cookies
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization", // allow JSON Headers
-		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
+		AllowMethods: "PATCH,GET,POST,PUT,DELETE,OPTIONS",
 	})) // Cross Origin Resource Sharing
 
 	database.InitDB()

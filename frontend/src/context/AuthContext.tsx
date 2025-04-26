@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (!res.ok) throw new Error("Login failed");
 
       setIsLoggedIn(true);
-      navigate("/profile");
+      navigate("/profileForm");
     } catch (err) {
       console.error("Login error:", err);
       alert("Login failed: Invalid credentials");

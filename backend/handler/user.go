@@ -105,37 +105,45 @@ func CreateUser(c *fiber.Ctx) error {
 }
 
 func UpdateUser(c *fiber.Ctx) error {
-	type UpdateUser struct {
-		Names string `json:"names"`
-	}
-	updateUser := new(UpdateUser)
-
-	if err := c.BodyParser(updateUser); err != nil {
-		return c.Status(500).JSON(fiber.Map{
-			"status": "error",
-			"message": "review input",
-			"data": err,
+	userID := c.Locals("userID").(string)
+	fmt.Printf("userID: %v\n", userID) // check TODO
+	// input with any data because we dont know the types of the data points ahead
+	var input map[string]interface{}
+	if err := c.BodyParser(&input); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status":  "error",
+			"message": "Invalid input",
+			"data":    err.Error(),
 		})
 	}
-	id := c.Params("id")
-	token := c.Locals("user").(*jwt.Token)
 
-	if !validToken(token, id) {
-		return c.Status(500).JSON(fiber.Map{
-			"status": "error",
-			"message": "invalid token id",
-			"data": nil,
-		})
-	}
+	// Remove fields the user shouldn't update
+	delete(input, "id")
+	delete(input, "CreatedAt")
+	delete(input, "password") // unless you handle this properly
+	delete(input, "UpdatedAt")
+	delete(input, "DeletedAt")
+
 
 	db := database.DB
-	var user model.User
 
-	db.First(&user, id)
-	user.Names = updateUser.Names
-	db.Save(&user)
+	// Update fields that were sent in the JSON
+	if err := db.Model(&model.User{}).Where("id = ?", userID).Updates(input).Error; err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"status":  "error",
+			"message": "Failed to update user",
+			"data":    err.Error(),
+		})
+	}
 
-	return c.JSON(fiber.Map{"status": "success", "message": "User updated successful", "data": user})
+	var updatedUser model.User
+	db.First(&updatedUser, userID)
+
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "User updated successfully",
+		"data":    updatedUser,
+	})
 }
 
 func DeleteUser(c *fiber.Ctx) error {

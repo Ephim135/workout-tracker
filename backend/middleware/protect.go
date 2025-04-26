@@ -46,6 +46,8 @@ func Protected() fiber.Handler{
 		c.Locals("userID", userID)
 		c.Locals("tokenClaims", claims) // set remaining claims as list
 
+		fmt.Printf("succesfully used Protecting middleware")
+
 		return c.Next() // go to next middleware or final handler without it would stop here
 	}
 }

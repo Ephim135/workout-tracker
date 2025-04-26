@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { apiFetch } from "../api/api";
 
 type ProfileType = {
   username: string;
@@ -16,7 +17,7 @@ function Profile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch(import.meta.env.VITE_API_URL + "/api/user/1", {
+        const res = await apiFetch("/api/user/", {
           method: "GET",
           credentials: "include", // <-- this is key to include the cookie
         });
