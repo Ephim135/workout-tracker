@@ -5,7 +5,7 @@ export async function apiFetch(url: string, options: RequestInit = {}) {
   const res = await fetch(urlComplete, options);
 
   if (res.status === 401) {
-    const refreshRes = await fetch("/api/refresh", {
+    const refreshRes = await fetch(urlComplete + "/api/refresh", {
       method: "POST",
       credentials: "include",
     });

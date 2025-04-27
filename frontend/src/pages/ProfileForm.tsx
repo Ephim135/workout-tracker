@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { apiFetch } from "../api/api";
+import { apiFetch } from "../api/api";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({
@@ -22,7 +22,7 @@ function ProfileForm() {
     e.preventDefault();
     try {
       console.log("Form submitted");
-      const res = await fetch(import.meta.env.VITE_API_URL + "/api/user/", {
+      const res = await apiFetch("/api/user/", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

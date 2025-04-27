@@ -60,7 +60,7 @@ func Login(c *fiber.Ctx) error {
 		HTTPOnly: true,
 		Secure:   false,
 		SameSite: "Lax",
-		Path:     "/api/",
+		Path:     "/",
 	})
 
 	c.Cookie(&fiber.Cookie{
