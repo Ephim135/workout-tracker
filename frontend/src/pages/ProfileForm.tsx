@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { apiFetch } from "../api/api";
+// import { apiFetch } from "../api/api";
 
 function ProfileForm() {
   const [profile, setProfile] = useState({
@@ -20,16 +20,24 @@ function ProfileForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await apiFetch("/user/", {
-      method: "PATCH",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...profile,
-      }),
-    });
-    if (res.ok) alert("Profile saved!");
-    else alert("Error saving profile");
+    try {
+      console.log("Form submitted");
+      const res = await fetch(import.meta.env.VITE_API_URL + "/api/user/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(profile),
+      });
+
+      if (res.ok) {
+        alert("Profile saved!");
+      } else {
+        alert("Error saving profile");
+      }
+    } catch (error) {
+      alert(`Session expired, please log in again. Error: ${error}`);
+      // logout
+    }
   };
 
   return (
