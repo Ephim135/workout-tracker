@@ -15,7 +15,7 @@ type User struct {
 	// Profile info
 	Age    int     `gorm:"type:int" json:"age"`
 	Gender string  `gorm:"type:varchar(50)" json:"gender"`
-	Height float64 `gorm:"type:float" json:"height"`
-	Weight float64 `gorm:"type:float" json:"weight"`
+	Height int `gorm:"type:int" json:"height"`
+	Weight int `gorm:"type:float" json:"weight"`
 	Goal   string  `gorm:"type:text" json:"goal"`
 }

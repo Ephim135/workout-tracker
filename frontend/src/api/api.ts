@@ -5,10 +5,13 @@ export async function apiFetch(url: string, options: RequestInit = {}) {
   const res = await fetch(urlComplete, options);
 
   if (res.status === 401) {
-    const refreshRes = await fetch(urlComplete + "/api/refresh", {
-      method: "POST",
-      credentials: "include",
-    });
+    const refreshRes = await fetch(
+      import.meta.env.VITE_API_URL + "/api/refresh",
+      {
+        method: "POST",
+        credentials: "include",
+      },
+    );
 
     if (refreshRes.ok) {
       return fetch(urlComplete, { ...options, credentials: "include" }); // retry original

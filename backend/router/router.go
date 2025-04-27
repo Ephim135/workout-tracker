@@ -32,5 +32,5 @@ func SetupRoutes(app *fiber.App) {
 	exercise.Get("/", handler.GetAllExercise)
 
 	// Refresh
-	api.Get("/refresh", handler.Refresh)
+	api.Get("/refresh/", handler.Refresh)
 }

@@ -70,7 +70,7 @@ func Login(c *fiber.Ctx) error {
 		HTTPOnly: true,
 		Secure:   false, // cookies are only send over https
 		SameSite: "Lax",
-		Path:     "/api/refresh",
+		Path:     "/api/refresh/",
 	})
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Login successful"})

@@ -66,7 +66,7 @@ function ProfileForm() {
       </select>
       <input
         type="number"
-        step="0.1"
+        step="1"
         name="height"
         value={profile.height}
         onChange={handleChange}
@@ -75,7 +75,7 @@ function ProfileForm() {
       />
       <input
         type="number"
-        step="0.1"
+        step="1"
         name="weight"
         value={profile.weight}
         onChange={handleChange}

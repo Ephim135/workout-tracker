@@ -15,7 +15,7 @@ import (
 
 func GenerateAccessToken(userID uint) (string, error) {
 	claims := jwt.MapClaims{
-		"sub": userID,
+		"id": userID,
 		"exp": time.Now().Add(time.Minute * 8).Unix(), // 8 minutes
 	}
 
@@ -25,7 +25,7 @@ func GenerateAccessToken(userID uint) (string, error) {
 
 func GenerateRefreshToken(userID uint) (string, error) {
 	claims := jwt.MapClaims{
-		"sub": userID,
+		"id": userID,
 		"exp": time.Now().Add(time.Hour * 30 * 24).Unix(), // 30 days
 	}
 
