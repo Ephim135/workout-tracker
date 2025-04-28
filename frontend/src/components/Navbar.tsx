@@ -3,8 +3,8 @@ import LoginRegister from "./LoginRegister";
 
 const Navbar = () => {
   return (
-    <nav className="relative mt-2 mb-6 flex h-16 items-center justify-between rounded bg-gray-500 px-6">
-      <a className="flex items-center text-xl font-bold">
+    <nav className="relative mt-2 mb-6 flex h-16 flex-wrap items-center justify-between rounded bg-gray-500 px-6 text-xl">
+      <a className="flex items-center font-bold">
         LOGO
         <img
           className="ml-2 inline"
@@ -13,7 +13,7 @@ const Navbar = () => {
           height="42"
         />
       </a>
-      <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 space-x-6 text-xl font-bold">
+      <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 space-x-6 font-bold">
         <Link className="hover:underline" to={"/"}>
           Home
         </Link>

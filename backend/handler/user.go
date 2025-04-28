@@ -107,7 +107,7 @@ func CreateUser(c *fiber.Ctx) error {
 
 func UpdateUser(c *fiber.Ctx) error {
 	userID := c.Locals("userID").(string)
-	fmt.Printf("userID: %v\n", userID) // check TODO
+	fmt.Printf("Update userID: %v\n", userID) // check TODO
 	// input with any data because we dont know the types of the data points ahead
 	var input map[string]interface{}
 	if err := c.BodyParser(&input); err != nil {
