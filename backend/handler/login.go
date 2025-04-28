@@ -52,17 +52,6 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"status": "error", "message": "Failed to save refresh token"})
 	}
 
-	// Set cookies
-	c.Cookie(&fiber.Cookie{
-		Name:     "access_token",
-		Value:    accessToken,
-		Expires:  time.Now().Add(15 * time.Minute),
-		HTTPOnly: true,
-		Secure:   false,
-		SameSite: "Lax",
-		Path:     "/",
-	})
-
 	c.Cookie(&fiber.Cookie{
 		Name:     "refresh_token",
 		Value:    rawRefreshToken,
@@ -70,7 +59,18 @@ func Login(c *fiber.Ctx) error {
 		HTTPOnly: true,
 		Secure:   false, // cookies are only send over https
 		SameSite: "Lax",
-		Path:     "/api/refresh/",
+		Path:     "/api/auth/refresh",
+	})
+
+	// Set cookies
+	c.Cookie(&fiber.Cookie{
+		Name:     "access_token",
+		Value:    accessToken,
+		Expires:  time.Now().Add(1 * time.Minute),
+		HTTPOnly: true,
+		Secure:   false,
+		SameSite: "Lax",
+		Path:     "/",
 	})
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Login successful"})

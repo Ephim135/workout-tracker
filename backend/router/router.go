@@ -18,11 +18,12 @@ func SetupRoutes(app *fiber.App) {
 	auth := api.Group("/auth")
 	auth.Post("/login", handler.Login)
 	auth.Post("/logout", handler.Logout)
+	auth.Get("/refresh", handler.Refresh) // refresh access token with refresh token
 
 	// User
 	user := api.Group("/user")
-	user.Get("/:id?", handler.GetUser) // optional id if no id JWT userID is used
-	user.Post("/", handler.CreateUser)
+	user.Get("/",middleware.Protected(), handler.GetUser)
+	user.Post("/", handler.CreateUser) // register
 	user.Patch("/", middleware.Protected(), handler.UpdateUser)
 	user.Delete("/", middleware.Protected(), handler.DeleteUser)
 
@@ -30,7 +31,4 @@ func SetupRoutes(app *fiber.App) {
 	exercise := api.Group("/exercise")
 	exercise.Get("/:id", handler.GetExercise)
 	exercise.Get("/", handler.GetAllExercise)
-
-	// Refresh
-	api.Get("/refresh/", handler.Refresh)
 }

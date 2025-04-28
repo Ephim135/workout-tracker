@@ -45,7 +45,8 @@ func validUser(id string, p string) bool {
 }
 
 func GetUser(c *fiber.Ctx) error {
-	id := c.Params("id")
+	id := c.Locals("userID")
+
 	db := database.DB
 	var user model.User
 

@@ -31,9 +31,9 @@ func Refresh(c *fiber.Ctx) error {
     c.Cookie(&fiber.Cookie{
         Name:     "access_token",
         Value:    newAccessToken,
-        Expires:  time.Now().Add(8 * time.Minute),
+        Expires:  time.Now().Add(1 * time.Minute),
         HTTPOnly: true,
-        Secure:   true,
+        Secure:   false,
         SameSite: "Lax",
         Path:     "/",
     })

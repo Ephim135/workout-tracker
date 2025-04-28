@@ -7,7 +7,7 @@ type ProfileType = {
   gender: string;
   height: number;
   weight: number;
-  fitnessGoal: string;
+  goal: string;
 };
 
 function Profile() {
@@ -46,18 +46,20 @@ function Profile() {
       <div className="flex items-center space-x-4">
         <div>
           <h2 className="mb-1 text-xl font-bold">{profile.username}</h2>
-          <p>age y/o • gender</p>
+          <p>
+            {profile.age} y/o • {profile.gender}
+          </p>
         </div>
       </div>
       <p>
-        <strong>Height:</strong> height cm
+        <strong>Height: {profile.height}</strong> height cm
       </p>
       <p>
-        <strong>Weight:</strong> weight kg
+        <strong>Weight: {profile.weight}</strong> weight kg
       </p>
       <div>
         <p>
-          <strong>Fitness Goal:</strong> fitnessGoal
+          <strong>Fitness Goal: {profile.goal}</strong> fitnessGoal
         </p>
       </div>
     </div>

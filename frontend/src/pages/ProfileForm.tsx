@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { apiFetch } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 function ProfileForm() {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({
     age: "",
     gender: "",
@@ -34,6 +36,7 @@ function ProfileForm() {
       } else {
         alert("Error saving profile");
       }
+      navigate("/profile");
     } catch (error) {
       alert(`Session expired, please log in again. Error: ${error}`);
       // logout

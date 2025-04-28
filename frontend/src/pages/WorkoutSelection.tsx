@@ -14,10 +14,13 @@ function WorkoutSelection() {
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:3000/api/exercise", {
-          method: "GET",
-          credentials: "include",
-        });
+        const res = await fetch(
+          import.meta.env.VITE_API_URL + "/api/exercise",
+          {
+            method: "GET",
+            credentials: "include",
+          },
+        );
 
         if (!res.ok) throw new Error("Failed to fetch exercise List");
 
@@ -34,6 +37,14 @@ function WorkoutSelection() {
   return (
     <div>
       <h2 className="text-center text-2xl">Workout Selection</h2>
+      <ul>
+        <li>Push</li>
+        <li>Pull</li>
+        <li>Legs</li>
+        <li>Upper</li>
+        <li>Lower</li>
+        <li>Arms</li>
+      </ul>
       <div className="flex flex-wrap justify-center gap-3">
         {exercises.map((exercise, index) => (
           <ExerciseCard key={index} {...exercise}></ExerciseCard>

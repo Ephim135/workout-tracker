@@ -6,9 +6,9 @@ export async function apiFetch(url: string, options: RequestInit = {}) {
 
   if (res.status === 401) {
     const refreshRes = await fetch(
-      import.meta.env.VITE_API_URL + "/api/refresh",
+      import.meta.env.VITE_API_URL + "/api/auth/refresh",
       {
-        method: "POST",
+        method: "GET",
         credentials: "include",
       },
     );

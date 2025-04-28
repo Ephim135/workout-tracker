@@ -67,5 +67,4 @@ Profile Page
 
 
 Key combos i want to learn
-space s f // open file
-space 
+space c r // rename
