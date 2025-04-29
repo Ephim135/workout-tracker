@@ -10,6 +10,7 @@ Protected middleware
 -do i want to make 2 different functions for access and refresh token or just check
 wich one i should use ?
 
+make Settings
 
 Database
 - make migrate and Drop table scalable ✅
@@ -18,24 +19,17 @@ Frontend
 - Navbar is bad on small devices
 - make a LOGO ✅
 
-LeaderBoard 
-
 Workout Selection
+1. workout should show that no workout is chosen pick between templates premade workouts or make the workout on the go
 1. render workout Selection if workout is empty
-2.  
 
 -make a list of exercises to choose from
--
--make a workout Planer with exercises sets etc.
-    -Exercises
-        - Make backend Logic to get Exercsises so u can show them on the frontend
 
 Workout Card
 -move set to different location
--copy workout from last workout
 
 Profile Page
--Basic Info
+-Basic Info ✅
     - name
     - picture
     - age / gender

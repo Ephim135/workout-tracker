@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
-const LoginRegister = () => {
+export default function MobileNavigation() {
   const { isLoggedIn, logout } = useAuth();
 
   if (isLoggedIn) {
@@ -16,7 +16,7 @@ const LoginRegister = () => {
   }
 
   return (
-    <div className="hidden space-x-4 lg:flex">
+    <div className="flex flex-col items-center gap-4">
       <Link
         to="/login"
         className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
@@ -29,8 +29,24 @@ const LoginRegister = () => {
       >
         Register
       </Link>
+      <Link
+        to="/register"
+        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+      >
+        Profile
+      </Link>
+      <Link
+        to="/register"
+        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+      >
+        Settings
+      </Link>
+      <Link
+        to="/register"
+        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+      >
+        About
+      </Link>
     </div>
   );
-};
-
-export default LoginRegister;
+}

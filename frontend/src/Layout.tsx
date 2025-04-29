@@ -4,7 +4,7 @@ import { AuthProvider } from "./context/AuthContext.tsx";
 
 export default function Layout() {
   return (
-    <div className="mx-auto w-[95%] md:w-[80%]">
+    <div className="mx-auto md:mt-2 md:w-[80%]">
       <AuthProvider>
         <Navbar />
         <div className="mx-auto w-[80%]">

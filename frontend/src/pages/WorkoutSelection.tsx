@@ -37,14 +37,6 @@ function WorkoutSelection() {
   return (
     <div>
       <h2 className="text-center text-2xl">Workout Selection</h2>
-      <ul>
-        <li>Push</li>
-        <li>Pull</li>
-        <li>Legs</li>
-        <li>Upper</li>
-        <li>Lower</li>
-        <li>Arms</li>
-      </ul>
       <div className="flex flex-wrap justify-center gap-3">
         {exercises.map((exercise, index) => (
           <ExerciseCard key={index} {...exercise}></ExerciseCard>
