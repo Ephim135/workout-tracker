@@ -5,7 +5,7 @@ function Workout() {
   return (
     <div className="flex flex-col items-center">
       <div>
-        <h1 className="text-center">Start a Workout from a Template</h1>
+        <h1 className="text-center">Start a Workout from a premade Template</h1>
         <ul className="gap my-2 flex flex-wrap justify-center gap-2">
           <button className="btn btn-primary">Push</button>
           <button className="btn btn-primary">Pull</button>
@@ -16,12 +16,12 @@ function Workout() {
         </ul>
       </div>
       <div className="mt-5 flex flex-col">
-        <Link to={"/workoutLog"}>
+        <Link to={"/workout/selection"}>
           <button className="btn btn-success w-full">
             Start Empty Workout
           </button>
         </Link>
-        <Link to={"/createTemplate"}>
+        <Link to={"/workout/selection"}>
           <button className="btn btn-warning w-full">
             Create a new Template
           </button>

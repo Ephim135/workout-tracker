@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import ExerciseCard from "../components/ExerciseCard";
+import ExerciseList from "../components/ExerciseList";
 
 type ExerciseType = {
   name: string;
@@ -39,7 +39,7 @@ function WorkoutSelection() {
       <h2 className="text-center text-2xl">Workout Selection</h2>
       <div className="flex flex-wrap justify-center gap-3">
         {exercises.map((exercise, index) => (
-          <ExerciseCard key={index} {...exercise}></ExerciseCard>
+          <ExerciseList key={index} {...exercise}></ExerciseList>
         ))}
       </div>
     </div>

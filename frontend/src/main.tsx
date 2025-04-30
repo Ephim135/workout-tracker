@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
       { path: "/game", element: <GameCanvas /> },
       { path: "/workout", element: <Workout /> },
-      { path: "/workoutSelection", element: <WorkoutSelection /> },
+      { path: "/workout/selection", element: <WorkoutSelection /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/profile", element: <Profile /> },
