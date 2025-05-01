@@ -8,7 +8,7 @@ const LoginRegister = () => {
     return (
       <button
         onClick={logout}
-        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+        className="hidden w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400 lg:flex"
       >
         Logout
       </button>

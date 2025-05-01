@@ -10,5 +10,4 @@ type WorkoutSet struct {
 	Weight         float64 `json:"weight"` // Weight lifted
 	SetType        string  `gorm:"type:varchar(50);not null" json:"set_type"` // "warmup", "working", "dropset"
 	Completed      bool    `gorm:"default:false" json:"completed"` // Checkbox for completion
-	Notes          string  `gorm:"type:text" json:"notes"`
 }

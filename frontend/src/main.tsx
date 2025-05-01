@@ -13,6 +13,7 @@ import Profile from "./pages/Profile.tsx";
 import Register from "./pages/Register.tsx";
 import ProfileForm from "./pages/ProfileForm.tsx";
 import MobileNavigation from "./pages/MobileNavigation.tsx";
+import ActiveWorkout from "./pages/ActiveWorkout.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
       { path: "/game", element: <GameCanvas /> },
       { path: "/workout", element: <Workout /> },
       { path: "/workout/selection", element: <WorkoutSelection /> },
+      { path: "/workout/active", element: <ActiveWorkout /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/profile", element: <Profile /> },
