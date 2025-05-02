@@ -15,8 +15,8 @@ function Workout() {
           <button className="btn btn-primary">Arms</button>
         </ul>
       </div>
-      <div className="mt-5 flex flex-col">
-        <Link to={"/workout/selection"}>
+      <div className="flex flex-col">
+        <Link className="mt-5 mb-2" to={"/workout/selection"}>
           <button className="btn btn-success w-full">
             Start Empty Workout
           </button>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useActiveWorkout } from "../context/ActiveWorkoutContext";
 
 type WorkoutCardProps = {
   name: string;
@@ -18,9 +19,11 @@ type WorkoutSetRowProps = {
   onRemove: (index: number) => void;
 };
 
-const gridLayout = "items-center grid grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-4";
+const gridLayout =
+  "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
 
 function WorkoutCard({ name }: WorkoutCardProps) {
+  const activeWorkoutContext = useActiveWorkout();
   const [sets, setSets] = useState<WorkoutSet[]>([
     { set: "", reps: "", weight: "" },
   ]);
@@ -35,12 +38,22 @@ function WorkoutCard({ name }: WorkoutCardProps) {
     setSets(newSets);
   };
 
+  const handleRemoveCard = () => {
+    activeWorkoutContext.removeExercise(name);
+  };
+
   return (
-    <div className="w-144 rounded border bg-gray-400 p-4 text-xl font-bold text-black">
-      <h1 className="text-xl font-bold text-black">{name}</h1>
+    <div className="mb-2 max-w-2xl rounded border bg-gray-400 p-2 text-black">
+      <div className="flex">
+        <h1 className="text-xl font-bold text-black">{name}</h1>
+        <button className="btn-xs btn ml-auto" onClick={handleRemoveCard}>
+          x
+        </button>
+      </div>
+
       <input
         type="text"
-        className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-xl font-bold text-black placeholder-black placeholder:text-xl placeholder:font-bold focus:border-blue-500 focus:shadow-md focus:outline-none"
+        className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         placeholder="Notes"
       />
       <WorkoutSetRowHeaders />
@@ -54,7 +67,7 @@ function WorkoutCard({ name }: WorkoutCardProps) {
           onRemove={removeSet}
         />
       ))}
-      <button className="btn mt-3 mr-3 text-lg" onClick={addSet}>
+      <button className="btn mt-3 mr-3" onClick={addSet}>
         Add Set
       </button>
       {/* <button className="btn mt-3 text-lg">Copy Last Workout</button> */}
@@ -66,9 +79,9 @@ export default WorkoutCard;
 
 function WorkoutSetRowHeaders() {
   return (
-    <div className={`${gridLayout} mt-3 border-b-3 pb-1 text-left`}>
+    <div className={`${gridLayout} mt-3 border-b-3 pb-1 text-center`}>
       <h3>Sets</h3>
-      <h3>Prev. Workout</h3>
+      <h3 className="overflow-hidden whitespace-nowrap">prev.WO</h3>
       <h3>Reps</h3>
       <h3>Weight</h3>
       <h3>Misc.</h3>
@@ -85,27 +98,26 @@ function WorkoutSetRow({
 }: WorkoutSetRowProps) {
   return (
     <div className={`${gridLayout} mt-3`}>
-      <span className="text-center">{index + 1}</span>
-      {/* <select name="" id="" className="rounded border p-1">
+      <select className="rounded border p-1">
         <option value="warmup">W</option>
         <option value="drop">D</option>
-        <option value="normal">1</option>
-      </select> */}
-      <p className="">no Value</p>
+        <option value="normal">{index + 1}</option>
+      </select>
+      <p className="text-center">no</p>
       <input
         value={reps}
         type="text"
-        className="w-full rounded border-2 border-black px-2 py-1 text-xl font-bold text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+        className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "reps", e.target.value)}
       ></input>
       <input
         value={weight}
         type="text"
-        className="w-full rounded border-2 border-black px-2 py-1 text-xl font-bold text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+        className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "reps", e.target.value)}
       ></input>
       <button
-        className="btn text-xl font-bold text-red-700"
+        className="btn border-none bg-transparent text-red-700 shadow-none"
         onClick={() => onRemove(index)}
       >
         X

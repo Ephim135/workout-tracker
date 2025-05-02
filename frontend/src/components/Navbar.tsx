@@ -3,7 +3,7 @@ import LoginRegister from "./LoginRegister";
 
 const Navbar = () => {
   return (
-    <nav className="relative mb-6 flex h-16 flex-wrap items-center justify-between rounded bg-gray-500 px-2 text-xl">
+    <nav className="fixed mb-6 flex h-16 w-full items-center justify-between rounded bg-gray-500 px-2 text-xl">
       <Link to={"/"} className="flex items-center font-bold">
         <img
           className="ml-2 inline"

@@ -3,6 +3,8 @@ import { useContext, ReactNode, createContext, useState } from "react";
 interface ActiveWorkoutContext {
   activeWorkout: ActiveWorkout;
   addExercise: (newExercise: ExerciseEntry) => void;
+  removeExercise: (name: string) => void;
+  addSet: (newSet: WorkoutSet, name: string) => void;
 }
 
 export interface WorkoutSet {
@@ -48,12 +50,34 @@ export const ActiveWorkoutProvider = ({
     }));
   };
 
-  // const addSet = (newSets: WorkoutSet) => {
-  //   setActiveWorkout
-  // }
+  const removeExercise = (name: string) => {
+    setActiveWorkout((prev) => ({
+      ...prev,
+      exerciseEntries: prev.exerciseEntries.filter(
+        (exercise) => exercise.name !== name,
+      ),
+    }));
+  };
+
+  const addSet = (newSet: WorkoutSet, exerciseName: string) => {
+    setActiveWorkout((prev) => ({
+      ...prev,
+      exerciseEntries: prev.exerciseEntries.map((exercise) => {
+        if (exercise.name === exerciseName) {
+          return {
+            ...exercise,
+            sets: [...exercise.sets, newSet],
+          };
+        }
+        return exercise;
+      }),
+    }));
+  };
 
   return (
-    <ActiveWorkoutContext.Provider value={{ activeWorkout, addExercise }}>
+    <ActiveWorkoutContext.Provider
+      value={{ activeWorkout, addExercise, removeExercise, addSet }}
+    >
       {children}
     </ActiveWorkoutContext.Provider>
   );

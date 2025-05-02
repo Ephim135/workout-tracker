@@ -7,7 +7,7 @@ export default function ActiveWorkout() {
 
   return (
     // map over Exercises in the current Workout display them with ExerciseCards
-    <div>
+    <div className="flex flex-col items-center">
       {activeWorkoutContext.activeWorkout.exerciseEntries.map(
         (exercise, index) => (
           <WorkoutCard key={index} name={exercise.name} />

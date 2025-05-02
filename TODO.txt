@@ -1,29 +1,21 @@
 Backend
-Login / Register
--decide if using 2 or 1 JWT ✅
--make cookies send them use them for (authentication vs authorization) ✅
--show clearly that u are logged in 
--Axios interceptors or fetch wrappers 
--make /api/refresh end point
+✅decide if using 2 or 1 JWT 
+✅make cookies send them use them for (authentication vs authorization) 
+✅make /api/refresh end point
+- Pagination
+- make it so i can create make a workout and Save It within my profile
 
-Protected middleware
--do i want to make 2 different functions for access and refresh token or just check
-wich one i should use ?
-
-make Settings
 
 Database
 - make migrate and Drop table scalable ✅
 
 Frontend
-- Navbar is bad on small devices
+- Navbar is bad on small devices ✅
 - make a LOGO ✅
+- make Settings
 
-Workout Selection
-1. workout should show that no workout is chosen pick between templates premade workouts or make the workout on the go
-1. render workout Selection if workout is empty
-
--make a list of exercises to choose from
+Flow Chart 
+Register / Login => 
 
 Workout Card
 -move set to different location

@@ -5,11 +5,11 @@ import { ActiveWorkoutProvider } from "./context/ActiveWorkoutContext.tsx";
 
 export default function Layout() {
   return (
-    <div className="mx-auto md:mt-2 md:w-[80%]">
+    <div className="mx-auto">
       <AuthProvider>
         <ActiveWorkoutProvider>
           <Navbar />
-          <div className="mx-auto w-[80%]">
+          <div className="mx-auto w-[80%] pt-18">
             <Outlet /> {/* renders the matched child route */}
           </div>
         </ActiveWorkoutProvider>
