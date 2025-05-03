@@ -20,7 +20,7 @@ function ExerciseCard({
   };
 
   return (
-    <div className="flex max-w-[300px] flex-col justify-between rounded-lg border p-4">
+    <div className="flex flex-col justify-between rounded-lg border p-4">
       <h3 className="mb-2 text-xl font-semibold">{name}</h3>
       <p className="mb-2 text-sm text-gray-400">{description}</p>
       <p className="mb-2 text-sm text-gray-400">{instructions}</p>

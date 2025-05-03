@@ -5,6 +5,7 @@ interface ActiveWorkoutContext {
   addExercise: (newExercise: ExerciseEntry) => void;
   removeExercise: (name: string) => void;
   addSet: (newSet: WorkoutSet, name: string) => void;
+  removeSet: (setIndex: number, exerciseName: string) => void;
 }
 
 export interface WorkoutSet {
@@ -74,9 +75,24 @@ export const ActiveWorkoutProvider = ({
     }));
   };
 
+  const removeSet = (setIndex: number, exerciseName: string) => {
+    setActiveWorkout((prev) => ({
+      ...prev,
+      exerciseEntries: prev.exerciseEntries.map((exercise) => {
+        if (exerciseName === exercise.name) {
+          return {
+            ...exercise,
+            sets: exercise.sets.filter((_, idx) => idx !== setIndex),
+          };
+        }
+        return exercise;
+      }),
+    }));
+  };
+
   return (
     <ActiveWorkoutContext.Provider
-      value={{ activeWorkout, addExercise, removeExercise, addSet }}
+      value={{ activeWorkout, removeSet, addExercise, removeExercise, addSet }}
     >
       {children}
     </ActiveWorkoutContext.Provider>
