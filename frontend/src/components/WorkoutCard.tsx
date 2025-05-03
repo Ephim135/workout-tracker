@@ -7,7 +7,11 @@ type WorkoutCardProps = {
 type WorkoutSetRowProps = {
   index: number;
   set: WorkoutSet;
-  onChange: (index: number, field: "reps" | "weight", value: string) => void;
+  onChange: (
+    index: number,
+    field: "reps" | "weight" | "setType",
+    value: string,
+  ) => void;
   onRemove: (index: number) => void;
 };
 
@@ -46,7 +50,7 @@ function WorkoutCard({ name }: WorkoutCardProps) {
 
   const handleSetChange = (
     index: number,
-    field: "reps" | "weight",
+    field: "reps" | "weight" | "setType",
     value: string,
   ) => {
     const updatedSet: WorkoutSet = { ...exercise.sets[index], [field]: value };
