@@ -6,13 +6,18 @@ interface ActiveWorkoutContext {
   removeExercise: (name: string) => void;
   addSet: (newSet: WorkoutSet, name: string) => void;
   removeSet: (setIndex: number, exerciseName: string) => void;
+  updateSet: (
+    index: number,
+    updatedSet: WorkoutSet,
+    exerciseName: string,
+  ) => void;
 }
 
-export interface WorkoutSet {
-  reps: number;
-  weight: number;
-  setType: "warmup" | "working" | "dropset";
-  completed: boolean;
+export interface ActiveWorkout {
+  userId: number;
+  startedAt: string; // or Date if you're working directly with Date objects
+  notes?: string;
+  exerciseEntries: ExerciseEntry[];
 }
 
 export interface ExerciseEntry {
@@ -21,11 +26,11 @@ export interface ExerciseEntry {
   sets: WorkoutSet[];
 }
 
-export interface ActiveWorkout {
-  userId: number;
-  startedAt: string; // or Date if you're working directly with Date objects
-  notes?: string;
-  exerciseEntries: ExerciseEntry[];
+export interface WorkoutSet {
+  reps: string;
+  weight: string;
+  setType: "warmup" | "working" | "dropset";
+  completed: boolean;
 }
 
 const ActiveWorkoutContext = createContext<ActiveWorkoutContext | undefined>(
@@ -45,10 +50,30 @@ export const ActiveWorkoutProvider = ({
   });
 
   const addExercise = (newExercise: ExerciseEntry) => {
-    setActiveWorkout((prev) => ({
-      ...prev,
-      exerciseEntries: [...prev.exerciseEntries, newExercise],
-    }));
+    setActiveWorkout((prev) => {
+      // check if the Exercise is already in the active Workout
+      const alreadyExists = prev.exerciseEntries.some(
+        (exercise) => exercise.name === newExercise.name,
+      );
+      if (alreadyExists) return prev; // return without adding new exercise
+
+      const defaultSet: WorkoutSet = {
+        reps: "8",
+        weight: "",
+        setType: "working",
+        completed: false,
+      };
+
+      const exerciseWithDefaults = {
+        ...newExercise,
+        sets: [defaultSet, defaultSet, defaultSet],
+      };
+
+      return {
+        ...prev,
+        exerciseEntries: [...prev.exerciseEntries, exerciseWithDefaults],
+      };
+    });
   };
 
   const removeExercise = (name: string) => {
@@ -75,14 +100,20 @@ export const ActiveWorkoutProvider = ({
     }));
   };
 
-  const removeSet = (setIndex: number, exerciseName: string) => {
+  const updateSet = (
+    index: number,
+    updatedSet: WorkoutSet,
+    exerciseName: string,
+  ) => {
     setActiveWorkout((prev) => ({
       ...prev,
       exerciseEntries: prev.exerciseEntries.map((exercise) => {
-        if (exerciseName === exercise.name) {
+        if (exercise.name === exerciseName) {
+          const updatedSets = [...exercise.sets];
+          updatedSets[index] = updatedSet;
           return {
             ...exercise,
-            sets: exercise.sets.filter((_, idx) => idx !== setIndex),
+            sets: updatedSets,
           };
         }
         return exercise;
@@ -90,9 +121,35 @@ export const ActiveWorkoutProvider = ({
     }));
   };
 
+  const removeSet = (setIndex: number, exerciseName: string) => {
+    setActiveWorkout((prev) => {
+      return {
+        ...prev,
+        exerciseEntries: prev.exerciseEntries.map((exercise) => {
+          // skip exercises we dont want to edit
+          if (exerciseName !== exercise.name) return exercise;
+          // prevent removing if only 1 set left
+          if (exercise.sets.length === 1) return exercise;
+
+          return {
+            ...exercise,
+            sets: exercise.sets.filter((_, idx) => idx !== setIndex),
+          };
+        }),
+      };
+    });
+  };
+
   return (
     <ActiveWorkoutContext.Provider
-      value={{ activeWorkout, removeSet, addExercise, removeExercise, addSet }}
+      value={{
+        activeWorkout,
+        removeSet,
+        addExercise,
+        removeExercise,
+        addSet,
+        updateSet,
+      }}
     >
       {children}
     </ActiveWorkoutContext.Provider>

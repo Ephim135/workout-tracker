@@ -14,7 +14,7 @@ export default function ActiveWorkout() {
         ),
       )}
     </div>
-    // button to finish the workout
-    // button to add Exercises
+    // button to finish the workout has to be hovering
+    // button to add Exercises has to be hovering
   );
 }

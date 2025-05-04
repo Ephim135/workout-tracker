@@ -19,7 +19,7 @@ const gridLayout =
   "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
 
 function WorkoutCard({ name }: WorkoutCardProps) {
-  const { activeWorkout, addSet, removeSet, removeExercise } =
+  const { activeWorkout, addSet, removeSet, removeExercise, updateSet } =
     useActiveWorkout();
 
   const exercise = activeWorkout.exerciseEntries.find(
@@ -32,8 +32,8 @@ function WorkoutCard({ name }: WorkoutCardProps) {
 
   const handleAddSet = () => {
     const newSet: WorkoutSet = {
-      reps: 0,
-      weight: 0,
+      reps: "",
+      weight: "",
       setType: "working",
       completed: false,
     };
@@ -48,13 +48,29 @@ function WorkoutCard({ name }: WorkoutCardProps) {
     removeExercise(name);
   };
 
+  // update input fields weight reps and setType
+  // changes ActiveWorkoutContext when value input field changes
+  // it validates the input
   const handleSetChange = (
     index: number,
     field: "reps" | "weight" | "setType",
     value: string,
   ) => {
-    const updatedSet: WorkoutSet = { ...exercise.sets[index], [field]: value };
-    addSet(updatedSet, name);
+    // check if input is numeric positve and smaller than 999 only if field is not setType
+    if (!/^[0-9]{0,3}$/.test(value) && field !== "setType") {
+      return;
+    }
+
+    const updatedSet: WorkoutSet = { ...exercise.sets[index] };
+
+    if (field === "reps" || field === "weight") {
+      updatedSet[field] = value || "";
+    } else {
+      updatedSet.setType = value as WorkoutSet["setType"];
+    }
+
+    console.log("Updating set", index, field, value);
+    updateSet(index, updatedSet, name);
   };
 
   return (
@@ -98,7 +114,8 @@ function WorkoutSetRowHeaders() {
       <h3 className="overflow-hidden whitespace-nowrap">prev.WO</h3>
       <h3>Reps</h3>
       <h3>Weight</h3>
-      <h3></h3>
+      <h3>misc</h3>
+      {/* make a settings wheel here */}
     </div>
   );
 }
@@ -107,33 +124,49 @@ function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
   return (
     <div className={`${gridLayout} mt-3`}>
       <select
-        className="rounded border p-1"
+        className="rounded border"
         value={set.setType}
-        onChange={(e) => onChange(index, "setType", e.target.value)}
+        onChange={(e) => {
+          console.log("Set Type Change:", e.target.value);
+          onChange(index, "setType", e.target.value);
+          console.log("setType: ", set.setType);
+        }}
       >
         <option value="warmup">W</option>
         <option value="drop">D</option>
-        <option value="normal">{index + 1}</option>
+        <option value="working">Set {index + 1}</option>
       </select>
-      <p className="text-center">no</p>
+      <p className="text-center">{index + 1}</p>
       <input
-        value={set.reps}
         type="text"
+        inputMode="numeric"
+        maxLength={3}
+        pattern="[0-9]*"
+        value={set.reps}
         className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "reps", e.target.value)}
       ></input>
       <input
-        value={set.weight}
         type="text"
+        inputMode="numeric"
+        maxLength={2}
+        pattern="[0-9]*"
+        value={set.weight}
         className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "weight", e.target.value)}
       ></input>
-      <button
-        className="btn border-none bg-transparent text-red-700 shadow-none"
-        onClick={() => onRemove(index)}
-      >
-        X
-      </button>
+      <div className="flex justify-evenly border">
+        <input
+          type="checkbox"
+          className="checkbox checkbox-md checkbox-neutral"
+        />
+        <button
+          className="btn btn-xs bg-transparent text-red-700 shadow-none"
+          onClick={() => onRemove(index)}
+        >
+          x
+        </button>
+      </div>
     </div>
   );
 }

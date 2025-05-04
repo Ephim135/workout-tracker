@@ -1,3 +1,7 @@
+MAKE THE WEBSITE A GUIDE TO START THE GYM WITH STEP BY STEP HOW TO DO IT
+WITH MOTIVATION WHY EVERYONE CAN DO IT HOW TO DO IT 
+
+
 Backend
 ✅decide if using 2 or 1 JWT 
 ✅make cookies send them use them for (authentication vs authorization) 
@@ -5,6 +9,17 @@ Backend
 - Pagination
 - make it so i can create make a workout and Save It within my profile
 
+ActiveWorkout
+- make the default zero go away ✅
+- 3 sets from beginning ✅
+- completed button ✅
+- make the maximum number 999 in the input fields ✅
+- first set not able to be deleted ✅
+- changing the type of set switches the index somehow ? ✅
+- make a seperate update Set function ✅
+- fix the select dropdown not selecting ✅
+- make button for remove disabled if length of sets is 1 ✅
+- add an add exercise button fixed
 
 Database
 - make migrate and Drop table scalable ✅
