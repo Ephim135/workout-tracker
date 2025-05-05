@@ -7,7 +7,9 @@ Backend
 ✅make cookies send them use them for (authentication vs authorization) 
 ✅make /api/refresh end point
 - Pagination
-- make it so i can create make a workout and Save It within my profile
+
+Create Save a workout
+- 
 
 ActiveWorkout
 - make the default zero go away ✅
@@ -19,7 +21,11 @@ ActiveWorkout
 - make a seperate update Set function ✅
 - fix the select dropdown not selecting ✅
 - make button for remove disabled if length of sets is 1 ✅
-- add an add exercise button fixed
+- add an add exercise button fixed ✅
+- input field number in the middle
+- make layout better
+- finish button positioning
+- timer for pause and timer for workout
 
 Database
 - make migrate and Drop table scalable ✅
@@ -27,13 +33,7 @@ Database
 Frontend
 - Navbar is bad on small devices ✅
 - make a LOGO ✅
-- make Settings
-
-Flow Chart 
-Register / Login => 
-
-Workout Card
--move set to different location
+- (make Settings)
 
 Profile Page
 -Basic Info ✅
