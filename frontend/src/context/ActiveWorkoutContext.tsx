@@ -11,6 +11,8 @@ interface ActiveWorkoutContext {
     updatedSet: WorkoutSet,
     exerciseName: string,
   ) => void;
+  saveActiveWorkout: () => void;
+  clearActiveWorkout: () => void;
 }
 
 export interface ActiveWorkout {
@@ -49,6 +51,13 @@ export const ActiveWorkoutProvider = ({
     exerciseEntries: [],
   });
 
+  const defaultSet: WorkoutSet = {
+    reps: "8",
+    weight: "",
+    setType: "working",
+    completed: false,
+  };
+
   const addExercise = (newExercise: ExerciseEntry) => {
     setActiveWorkout((prev) => {
       // check if the Exercise is already in the active Workout
@@ -57,16 +66,9 @@ export const ActiveWorkoutProvider = ({
       );
       if (alreadyExists) return prev; // return without adding new exercise
 
-      const defaultSet: WorkoutSet = {
-        reps: "8",
-        weight: "",
-        setType: "working",
-        completed: false,
-      };
-
       const exerciseWithDefaults = {
         ...newExercise,
-        sets: [defaultSet, defaultSet, defaultSet],
+        sets: [defaultSet, defaultSet],
       };
 
       return {
@@ -140,9 +142,33 @@ export const ActiveWorkoutProvider = ({
     });
   };
 
-  // const saveActiveWorkout = () => {
+  const saveActiveWorkout = async () => {
+    try {
+      const res = await fetch(import.meta.env.VITE_API_URL + "/api/workout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(activeWorkout),
+      });
 
-  // }
+      if (!res.ok) {
+        throw new Error("Failed to save workout!");
+      }
+
+      const data = await res.json();
+      console.log("Workout saved: ", data);
+    } catch (err) {
+      console.error("Error saving workout:", err);
+    }
+  };
+
+  const clearActiveWorkout = () => {
+    setActiveWorkout({
+      userId: 0,
+      startedAt: new Date().toISOString(),
+      exerciseEntries: [],
+    });
+  };
 
   return (
     <ActiveWorkoutContext.Provider
@@ -153,6 +179,8 @@ export const ActiveWorkoutProvider = ({
         removeExercise,
         addSet,
         updateSet,
+        saveActiveWorkout,
+        clearActiveWorkout,
       }}
     >
       {children}

@@ -87,7 +87,11 @@ function WorkoutCard({ name }: WorkoutCardProps) {
         className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         placeholder="Notes"
       />
-      <WorkoutSetRowHeaders />
+      <div>
+        <button className="btn mt-3 mr-3" onClick={handleAddSet}>
+          Add Set
+        </button>
+      </div>
       {exercise.sets.map((set, index) => (
         <WorkoutSetRow
           key={index}
@@ -97,28 +101,12 @@ function WorkoutCard({ name }: WorkoutCardProps) {
           onRemove={handleRemoveSet}
         />
       ))}
-      <button className="btn mt-3 mr-3" onClick={handleAddSet}>
-        Add Set
-      </button>
       {/* <button className="btn mt-3 text-lg">Copy Last Workout</button> */}
     </div>
   );
 }
 
 export default WorkoutCard;
-
-function WorkoutSetRowHeaders() {
-  return (
-    <div className={`${gridLayout} mt-3 border-b-3 pb-1 text-center`}>
-      <h3>Set</h3>
-      <h3 className="overflow-hidden whitespace-nowrap">prev.WO</h3>
-      <h3>Reps</h3>
-      <h3>Weight</h3>
-      <h3>misc</h3>
-      {/* make a settings wheel here */}
-    </div>
-  );
-}
 
 function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
   return (
@@ -143,7 +131,7 @@ function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
         maxLength={3}
         pattern="[0-9]*"
         value={set.reps}
-        className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+        className="w-full rounded border-1 border-black text-center text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "reps", e.target.value)}
       ></input>
       <input
@@ -152,10 +140,10 @@ function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
         maxLength={2}
         pattern="[0-9]*"
         value={set.weight}
-        className="w-full rounded border-2 border-black text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+        className="w-full rounded border-1 border-black text-center text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         onChange={(e) => onChange(index, "weight", e.target.value)}
       ></input>
-      <div className="flex justify-evenly border">
+      <div className="flex justify-evenly">
         <input
           type="checkbox"
           className="checkbox checkbox-md checkbox-neutral"
