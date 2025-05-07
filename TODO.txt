@@ -1,7 +1,6 @@
 MAKE THE WEBSITE A GUIDE TO START THE GYM WITH STEP BY STEP HOW TO DO IT
 WITH MOTIVATION WHY EVERYONE CAN DO IT HOW TO DO IT 
 
-
 Backend
 ✅decide if using 2 or 1 JWT 
 ✅make cookies send them use them for (authentication vs authorization) 
@@ -9,7 +8,9 @@ Backend
 - Pagination
 
 Create Save a workout
-- 
+- send data to backend 
+- save the data to the db
+- fit the back and frontend data together
 
 ActiveWorkout
 - make the default zero go away ✅
@@ -22,10 +23,15 @@ ActiveWorkout
 - fix the select dropdown not selecting ✅
 - make button for remove disabled if length of sets is 1 ✅
 - add an add exercise button fixed ✅
-- input field number in the middle
-- make layout better
-- finish button positioning
+- input field number in the middle ✅
+- make layout better ✅
+- finish button positioning ✅
 - timer for pause and timer for workout
+- give the right userId
+- Add Set button maby next to Notes ?
+
+Timer
+- start adjust stop
 
 Database
 - make migrate and Drop table scalable ✅
@@ -67,3 +73,18 @@ Profile Page
 
 Key combos i want to learn
 space c r // rename
+
+
+List Dühring
+- Online Shop
+- Verantwortung gesamte Schuhabteilung/Fußballschuh abteilung
+- Ware Buchen
+- eigenständige weiterbildung
+- warenwirtschaftsSystem crash Curs ?
+
+Physio Termine
+12. 8:40
+14. 8:40
+21. 10:40
+27. 15:30
+30. 11:40

@@ -1,4 +1,5 @@
 import { WorkoutSet, useActiveWorkout } from "../context/ActiveWorkoutContext";
+import { useState, useEffect } from "react";
 
 type WorkoutCardProps = {
   name: string;
@@ -19,8 +20,18 @@ const gridLayout =
   "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
 
 function WorkoutCard({ name }: WorkoutCardProps) {
+  const [counter, setCounter] = useState(59);
   const { activeWorkout, addSet, removeSet, removeExercise, updateSet } =
     useActiveWorkout();
+
+  // counter Logic
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prev) => (prev > 0 ? prev - 1 : 99));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const exercise = activeWorkout.exerciseEntries.find(
     (entry) => entry.name === name,
@@ -91,6 +102,16 @@ function WorkoutCard({ name }: WorkoutCardProps) {
         <button className="btn mt-3 mr-3" onClick={handleAddSet}>
           Add Set
         </button>
+        <span className="countdown">
+          <span
+            className="font-bold"
+            style={{ "--value": counter } as React.CSSProperties}
+            aria-live="polite"
+            aria-label={`${counter} seconds remaining`}
+          >
+            Timer: {counter}
+          </span>
+        </span>
       </div>
       {exercise.sets.map((set, index) => (
         <WorkoutSetRow
