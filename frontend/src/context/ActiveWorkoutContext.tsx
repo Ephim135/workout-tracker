@@ -13,6 +13,7 @@ interface ActiveWorkoutContext {
   ) => void;
   saveActiveWorkout: () => void;
   clearActiveWorkout: () => void;
+  setStatus: (status: "active" | "completed") => void;
 }
 
 export interface ActiveWorkout {
@@ -20,11 +21,12 @@ export interface ActiveWorkout {
   startedAt: string; // or Date if you're working directly with Date objects
   notes?: string;
   exerciseEntries: ExerciseEntry[];
+  status: "active" | "completed";
 }
 
 export interface ExerciseEntry {
   exerciseId: number;
-  name: string; // optional: useful if you want to avoid extra lookups
+  name: string; // not optional cause we need name for Workout card
   sets: WorkoutSet[];
 }
 
@@ -49,6 +51,7 @@ export const ActiveWorkoutProvider = ({
     userId: 0,
     startedAt: new Date().toISOString(),
     exerciseEntries: [],
+    status: "active",
   });
 
   const defaultSet: WorkoutSet = {
@@ -56,6 +59,13 @@ export const ActiveWorkoutProvider = ({
     weight: "",
     setType: "working",
     completed: false,
+  };
+
+  const setStatus = (status: "completed" | "active") => {
+    setActiveWorkout((prev) => ({
+      ...prev,
+      status: status,
+    }));
   };
 
   const addExercise = (newExercise: ExerciseEntry) => {
@@ -167,6 +177,7 @@ export const ActiveWorkoutProvider = ({
       userId: 0,
       startedAt: new Date().toISOString(),
       exerciseEntries: [],
+      status: "active",
     });
   };
 
@@ -181,6 +192,7 @@ export const ActiveWorkoutProvider = ({
         updateSet,
         saveActiveWorkout,
         clearActiveWorkout,
+        setStatus,
       }}
     >
       {children}

@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function ActiveWorkout() {
   // get the currently running workout
-  const { activeWorkout, saveActiveWorkout, clearActiveWorkout } =
+  const { activeWorkout, saveActiveWorkout, clearActiveWorkout, setStatus } =
     useActiveWorkout();
 
   const handleFinishWorkout = () => {
+    setStatus("completed"); // sets the status to completed
     saveActiveWorkout();
     clearActiveWorkout();
     // clear activeWorkoutContext

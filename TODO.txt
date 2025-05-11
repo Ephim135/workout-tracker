@@ -2,15 +2,19 @@ MAKE THE WEBSITE A GUIDE TO START THE GYM WITH STEP BY STEP HOW TO DO IT
 WITH MOTIVATION WHY EVERYONE CAN DO IT HOW TO DO IT 
 
 Backend
-✅decide if using 2 or 1 JWT 
-✅make cookies send them use them for (authentication vs authorization) 
-✅make /api/refresh end point
+- decide if using 2 or 1 JWT ✅
+- make cookies send them use them for (authentication vs authorization) ✅
+- make /api/refresh end point✅
 - Pagination
+
+Database
+- make migrate and Drop table scalable ✅
 
 Create Save a workout
 - send data to backend 
 - save the data to the db
 - fit the back and frontend data together
+- startedAt time is 0000 also the time should only start when the workout has started
 
 ActiveWorkout
 - make the default zero go away ✅
@@ -29,12 +33,9 @@ ActiveWorkout
 - timer for pause and timer for workout
 - give the right userId
 - Add Set button maby next to Notes ?
+    Timer
+    - start adjust stop
 
-Timer
-- start adjust stop
-
-Database
-- make migrate and Drop table scalable ✅
 
 Frontend
 - Navbar is bad on small devices ✅
@@ -76,11 +77,16 @@ space c r // rename
 
 
 List Dühring
+- perspektive aus seiner sicht annehmen
+    was kann ich bringen
 - Online Shop
 - Verantwortung gesamte Schuhabteilung/Fußballschuh abteilung
+- deligieren
 - Ware Buchen
 - eigenständige weiterbildung
-- warenwirtschaftsSystem crash Curs ?
+- warenwirtschaftsSystem
+- eigenständiges arbeiten
+- starker verkäufer
 
 Physio Termine
 12. 8:40

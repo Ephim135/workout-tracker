@@ -105,12 +105,10 @@ function WorkoutCard({ name }: WorkoutCardProps) {
         <span className="countdown">
           <span
             className="font-bold"
-            style={{ "--value": counter } as React.CSSProperties}
+            // style={{ "--value": counter } as React.CSSProperties}
             aria-live="polite"
             aria-label={`${counter} seconds remaining`}
-          >
-            Timer: {counter}
-          </span>
+          ></span>
         </span>
       </div>
       {exercise.sets.map((set, index) => (
