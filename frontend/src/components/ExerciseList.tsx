@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useActiveWorkout } from "../context/ActiveWorkoutContext";
+import { useActiveWorkout } from "../context/useActiveWorkout";
 
 type ExerciseType = {
   name: string;

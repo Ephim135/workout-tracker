@@ -1,14 +1,6 @@
-import { ReactNode, useState, useContext, createContext } from "react";
-import type {
-  ExerciseEntry,
-  WorkoutSet,
-  ActiveWorkoutContext,
-  ActiveWorkout,
-} from "./types";
-
-const ActiveWorkoutContext = createContext<ActiveWorkoutContext | undefined>(
-  undefined,
-);
+import { ReactNode, useState } from "react";
+import type { ExerciseEntry, WorkoutSet, ActiveWorkout } from "./types";
+import { ActiveWorkoutContext } from "./useActiveWorkout.tsx";
 
 export const ActiveWorkoutProvider = ({
   children,
@@ -24,6 +16,9 @@ export const ActiveWorkoutProvider = ({
   });
 
   const defaultSet: WorkoutSet = {
+    userId: 0, // this 3 are placeholder
+    exerciseEntryId: 1,
+    setNumber: 1,
     reps: "8",
     weight: "",
     setType: "working",
@@ -167,14 +162,4 @@ export const ActiveWorkoutProvider = ({
       {children}
     </ActiveWorkoutContext.Provider>
   );
-};
-
-export const useActiveWorkout = () => {
-  const context = useContext(ActiveWorkoutContext);
-  if (!context) {
-    throw new Error(
-      "useActiveWorkout must be used within an ActiveWorkoutProvider",
-    );
-  }
-  return context;
 };

@@ -1,5 +1,6 @@
-import { WorkoutSet, useActiveWorkout } from "../context/ActiveWorkoutContext";
+import { useActiveWorkout } from "../context/useActiveWorkout";
 import { useState, useEffect } from "react";
+import type { WorkoutSet } from "../context/types";
 
 type WorkoutCardProps = {
   name: string;
@@ -43,6 +44,9 @@ function WorkoutCard({ name }: WorkoutCardProps) {
 
   const handleAddSet = () => {
     const newSet: WorkoutSet = {
+      userId: 0,
+      exerciseEntryId: 0,
+      setNumber: 0,
       reps: "",
       weight: "",
       setType: "working",

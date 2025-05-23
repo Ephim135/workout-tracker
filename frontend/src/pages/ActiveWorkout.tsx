@@ -1,5 +1,5 @@
 import WorkoutCard from "../components/WorkoutCard";
-import { useActiveWorkout } from "../context/ActiveWorkoutContext";
+import { useActiveWorkout } from "../context/useActiveWorkout";
 import { Link } from "react-router-dom";
 
 export default function ActiveWorkout() {
