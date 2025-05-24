@@ -2,6 +2,8 @@
 XXXXXXXXXXXXXXXXXXXXX
 - Finish frontend to backend compatibility for database layout of data
 XXXXXXXXXXXXXXXXXXXX
+make strings to ints for reps and weight
+
 
 Backend
 - decide if using 2 or 1 JWT ✅
@@ -44,6 +46,7 @@ Frontend
 - Navbar is bad on small devices ✅
 - make a LOGO ✅
 - (make Settings)
+- save the userId in authContext
 
 Profile Page
 -Basic Info ✅

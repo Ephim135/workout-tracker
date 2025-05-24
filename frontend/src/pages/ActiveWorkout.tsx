@@ -11,9 +11,6 @@ export default function ActiveWorkout() {
     setStatus("completed"); // sets the status to completed
     saveActiveWorkout();
     clearActiveWorkout();
-    // clear activeWorkoutContext
-    // send data to backend save activeWorkout
-    // navigate to workout side
   };
 
   return (

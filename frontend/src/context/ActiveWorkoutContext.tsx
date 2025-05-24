@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import type { ExerciseEntry, WorkoutSet, ActiveWorkout } from "./types";
 import { ActiveWorkoutContext } from "./useActiveWorkout.tsx";
+import { useAuth } from "./AuthContext.tsx";
 
 export const ActiveWorkoutProvider = ({
   children,
@@ -8,19 +9,18 @@ export const ActiveWorkoutProvider = ({
   children: ReactNode;
 }) => {
   // initialize the activeWorkout
+  const { userId } = useAuth();
   const [activeWorkout, setActiveWorkout] = useState<ActiveWorkout>({
-    userId: 0,
+    userId: userId, // get from context
     startedAt: new Date().toISOString(),
     exerciseEntries: [],
     status: "active",
   });
 
   const defaultSet: WorkoutSet = {
-    userId: 0, // this 3 are placeholder
-    exerciseEntryId: 1,
     setNumber: 1,
-    reps: "8",
-    weight: "",
+    reps: 8,
+    weight: 0,
     setType: "working",
     completed: false,
   };
@@ -124,6 +124,8 @@ export const ActiveWorkoutProvider = ({
         credentials: "include",
         body: JSON.stringify(activeWorkout),
       });
+
+      console.log(JSON.stringify(activeWorkout));
 
       if (!res.ok) {
         throw new Error("Failed to save workout!");

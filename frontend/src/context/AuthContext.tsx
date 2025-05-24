@@ -2,6 +2,7 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
+  userId: number | null;
   isLoggedIn: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
@@ -10,6 +11,7 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [userId, setUserId] = useState<number | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
@@ -26,8 +28,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       );
 
       if (!res.ok) throw new Error("Login failed");
+      const data = await res.json();
 
       setIsLoggedIn(true);
+      setUserId(data.user.id);
       navigate("/profileForm");
     } catch (err) {
       console.error("Login error:", err);
@@ -36,12 +40,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = () => {
+    // send to backend to logout the user
     navigate("/login");
     setIsLoggedIn(false);
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

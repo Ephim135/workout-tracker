@@ -15,6 +15,7 @@ type WorkoutSetRowProps = {
     value: string,
   ) => void;
   onRemove: (index: number) => void;
+  onCheckbox: (index: number, checked: boolean) => void;
 };
 
 const gridLayout =
@@ -44,11 +45,9 @@ function WorkoutCard({ name }: WorkoutCardProps) {
 
   const handleAddSet = () => {
     const newSet: WorkoutSet = {
-      userId: 0,
-      exerciseEntryId: 0,
-      setNumber: 0,
-      reps: "",
-      weight: "",
+      setNumber: exercise.sets.length + 1,
+      reps: 8,
+      weight: 0,
       setType: "working",
       completed: false,
     };
@@ -71,20 +70,33 @@ function WorkoutCard({ name }: WorkoutCardProps) {
     field: "reps" | "weight" | "setType",
     value: string,
   ) => {
-    // check if input is numeric positve and smaller than 999 only if field is not setType
-    if (!/^[0-9]{0,3}$/.test(value) && field !== "setType") {
-      return;
-    }
-
-    const updatedSet: WorkoutSet = { ...exercise.sets[index] };
-
+    // For reps and weight, convert string to number safely
     if (field === "reps" || field === "weight") {
-      updatedSet[field] = value || "";
-    } else {
-      updatedSet.setType = value as WorkoutSet["setType"];
-    }
+      // Validate input is numeric (already done)
+      if (!/^[0-9]{0,3}$/.test(value)) {
+        return;
+      }
 
-    console.log("Updating set", index, field, value);
+      // Convert to number or zero if empty string
+      const numericValue = value === "" ? 0 : Number(value);
+
+      const updatedSet: WorkoutSet = {
+        ...exercise.sets[index],
+        [field]: numericValue,
+      };
+      updateSet(index, updatedSet, name);
+    } else {
+      // For setType (string)
+      const updatedSet: WorkoutSet = {
+        ...exercise.sets[index],
+        setType: value as WorkoutSet["setType"],
+      };
+      updateSet(index, updatedSet, name);
+    }
+  };
+
+  const handleCheckboxChange = (index: number, checked: boolean) => {
+    const updatedSet = { ...exercise.sets[index], completed: checked };
     updateSet(index, updatedSet, name);
   };
 
@@ -122,6 +134,7 @@ function WorkoutCard({ name }: WorkoutCardProps) {
           set={set}
           onChange={handleSetChange}
           onRemove={handleRemoveSet}
+          onCheckbox={handleCheckboxChange}
         />
       ))}
       {/* <button className="btn mt-3 text-lg">Copy Last Workout</button> */}
@@ -131,20 +144,24 @@ function WorkoutCard({ name }: WorkoutCardProps) {
 
 export default WorkoutCard;
 
-function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
+function WorkoutSetRow({
+  index,
+  set,
+  onChange,
+  onRemove,
+  onCheckbox,
+}: WorkoutSetRowProps) {
   return (
     <div className={`${gridLayout} mt-3`}>
       <select
         className="rounded border"
         value={set.setType}
         onChange={(e) => {
-          console.log("Set Type Change:", e.target.value);
           onChange(index, "setType", e.target.value);
-          console.log("setType: ", set.setType);
         }}
       >
         <option value="warmup">W</option>
-        <option value="drop">D</option>
+        <option value="dropset">D</option>
         <option value="working">Set {index + 1}</option>
       </select>
       <p className="text-center">{index + 1}</p>
@@ -160,7 +177,7 @@ function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
       <input
         type="text"
         inputMode="numeric"
-        maxLength={2}
+        maxLength={3}
         pattern="[0-9]*"
         value={set.weight}
         className="w-full rounded border-1 border-black text-center text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
@@ -170,6 +187,8 @@ function WorkoutSetRow({ index, set, onChange, onRemove }: WorkoutSetRowProps) {
         <input
           type="checkbox"
           className="checkbox checkbox-md checkbox-neutral"
+          checked={set.completed}
+          onChange={(e) => onCheckbox(index, e.target.checked)}
         />
         <button
           className="btn btn-xs bg-transparent text-red-700 shadow-none"

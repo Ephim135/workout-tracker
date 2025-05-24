@@ -19,14 +19,15 @@ type Workout struct {
 	StartedAt   time.Time       `gorm:"not null" json:"startedAt"`            // When they started
 	EndedAt     *time.Time      `json:"endedAt"`                              // Optional, null if still in progress
 	Status      WorkoutStatus          `gorm:"type:varchar(20);default:'active'" json:"status"` // "in_progress", "completed", "abandoned"
-	ExerciseEntries []ExerciseEntry `gorm:"foreignKey:WorkoutID" json:"exerciseEntries"` // The actual performed exercises
+	ExerciseEntries []ExerciseEntry `gorm:"foreignKey:WorkoutID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"exerciseEntries"`
 }
 
 type ExerciseEntry struct {
 	gorm.Model
 	WorkoutID uint `gorm:"not null" json:"workoutId"` // Links to Workout
 	ExerciseID uint `gorm:"not null" json:"exerciseId"` // Links to Exercise
-	Sets []WorkoutSet `gorm:"foreignKey:ExerciseEntryID" json:"sets"` // Links to WorkoutSet
+	Name string `gorm:"-" json:"name"`
+	Sets []WorkoutSet `gorm:"foreignKey:ExerciseEntryID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"sets"`
 }
 
 type WorkoutSet struct {

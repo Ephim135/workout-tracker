@@ -14,6 +14,17 @@ func Login(c *fiber.Ctx) error {
 		Identity string `json:"identity"`
 		Password string `json:"password"`
 	}
+
+	type UserResponse struct {
+	ID       uint   `json:"id"`
+	Username string `json:"username"`
+	Age      int    `json:"age,omitempty"`
+	Gender   string `json:"gender,omitempty"`
+	Height   int    `json:"height,omitempty"`
+	Weight   int    `json:"weight,omitempty"`
+	Goal     string `json:"goal,omitempty"`
+	}
+
 	var input LoginInput
 	if err := c.BodyParser(&input); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -52,6 +63,7 @@ func Login(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"status": "error", "message": "Failed to save refresh token"})
 	}
 
+	// Set cookies
 	c.Cookie(&fiber.Cookie{
 		Name:     "refresh_token",
 		Value:    rawRefreshToken,
@@ -61,8 +73,6 @@ func Login(c *fiber.Ctx) error {
 		SameSite: "Lax",
 		Path:     "/api/auth/refresh",
 	})
-
-	// Set cookies
 	c.Cookie(&fiber.Cookie{
 		Name:     "access_token",
 		Value:    accessToken,
@@ -73,5 +83,19 @@ func Login(c *fiber.Ctx) error {
 		Path:     "/",
 	})
 
-	return c.JSON(fiber.Map{"status": "success", "message": "Login successful"})
+	userResponse := UserResponse{
+	ID:       user.ID,
+	Username: user.Username,
+	Age:      user.Age,
+	Gender:   user.Gender,
+	Height:   user.Height,
+	Weight:   user.Weight,
+	Goal:     user.Goal,
+	}
+
+	return c.JSON(fiber.Map{
+		"status":  "success",
+		"message": "Login successful",
+		"user":    userResponse,
+	})
 }

@@ -15,21 +15,22 @@ export interface ActiveWorkoutCtx {
 }
 
 export interface ActiveWorkout {
-  userId: number;
+  userId: number | null;
   startedAt: string; // or Date if you're working directly with Date objects
   exerciseEntries: ExerciseEntry[];
   status: "active" | "completed";
 }
 
 export interface ExerciseEntry {
+  exerciseId: number;
   name: string; // not optional cause we need name for Workout card
   sets: WorkoutSet[];
 }
 
 export interface WorkoutSet {
   setNumber: number;
-  reps: string | number;
-  weight: string | number;
+  reps: number;
+  weight: number;
   setType: "warmup" | "working" | "dropset";
   completed: boolean;
 }
