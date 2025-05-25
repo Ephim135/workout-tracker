@@ -21,16 +21,13 @@ function ExerciseList({ name, target_muscles, id }: ExerciseType) {
         sets: [],
       });
     }
-    // remove exercise from context state
-    // if (selected) {
-    // }
     setSelected(!selected);
   };
 
   return (
     <div
       onClick={handleSelect}
-      className={`mb-0.5 flex w-full items-center rounded-lg border p-1.5 ${selected ? "bg-emerald-700 text-black" : ""}`}
+      className={`mb-0.5 flex w-full max-w-xl items-center rounded-lg border p-1.5 ${selected ? "bg-emerald-700 text-black" : ""}`}
     >
       <h1 className="overflow-hidden font-bold whitespace-nowrap">{name}</h1>
       <p className="overflow-hidden px-2 text-gray-400">

@@ -39,7 +39,7 @@ function WorkoutSelection() {
   return (
     <div>
       <h2 className="mb-4 text-center text-2xl font-bold">Workout Selection</h2>
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-col items-center gap-3">
         {exercises.map((exercise, index) => (
           <ExerciseList key={index} {...exercise}></ExerciseList>
         ))}

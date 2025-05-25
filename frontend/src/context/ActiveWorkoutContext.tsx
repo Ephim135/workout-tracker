@@ -18,7 +18,7 @@ export const ActiveWorkoutProvider = ({
   });
 
   const defaultSet: WorkoutSet = {
-    setNumber: 1,
+    setNumber: 1, // how to make the set number increase accordingly
     reps: 8,
     weight: 0,
     setType: "working",
@@ -140,7 +140,7 @@ export const ActiveWorkoutProvider = ({
 
   const clearActiveWorkout = () => {
     setActiveWorkout({
-      userId: 0,
+      userId: userId,
       startedAt: new Date().toISOString(),
       exerciseEntries: [],
       status: "active",

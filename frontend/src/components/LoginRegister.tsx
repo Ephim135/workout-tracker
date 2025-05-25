@@ -19,13 +19,13 @@ const LoginRegister = () => {
     <div className="hidden space-x-4 lg:flex">
       <Link
         to="/login"
-        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center text-base font-bold hover:bg-indigo-400"
       >
         Login
       </Link>
       <Link
         to="/register"
-        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center font-bold hover:bg-indigo-400"
+        className="w-24 rounded bg-indigo-600 px-3 py-2 text-center text-base font-bold hover:bg-indigo-400"
       >
         Register
       </Link>

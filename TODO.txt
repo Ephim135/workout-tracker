@@ -1,24 +1,15 @@
 // Current TODO //
-XXXXXXXXXXXXXXXXXXXXX
-- Finish frontend to backend compatibility for database layout of data
-XXXXXXXXXXXXXXXXXXXX
-make strings to ints for reps and weight
-
+Finish Timer component
 
 Backend
 - decide if using 2 or 1 JWT ✅
 - make cookies send them use them for (authentication vs authorization) ✅
 - make /api/refresh end point✅
 - Pagination
+- Finish frontend to backend compatibility for database layout of data ✅
 
 Database
 - make migrate and Drop table scalable ✅
-
-Create Save a workout
-- send data to backend 
-- save the data to the db
-- fit the back and frontend data together
-- startedAt time is 0000 also the time should only start when the workout has started
 
 ActiveWorkout
 - make the default zero go away ✅
@@ -35,11 +26,12 @@ ActiveWorkout
 - make layout better ✅
 - finish button positioning ✅
 - timer for pause and timer for workout
-- give the right userId
+- give the right userId ✅
 - Add Set button maby next to Notes ?
     Timer
     - start adjust stop
 - Make a Function that creates DefaultSets
+- make strings to ints for reps and weight ✅
 
 
 Frontend
@@ -80,19 +72,6 @@ Profile Page
 
 Key combos i want to learn
 space c r // rename
-
-
-List Dühring
-- perspektive aus seiner sicht annehmen
-    was kann ich bringen
-- Online Shop
-- Verantwortung gesamte Schuhabteilung/Fußballschuh abteilung
-- deligieren
-- Ware Buchen
-- eigenständige weiterbildung
-- warenwirtschaftsSystem
-- eigenständiges arbeiten
-- starker verkäufer
 
 Physio Termine
 XXX 12. 8:40

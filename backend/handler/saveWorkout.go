@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/Ephim135/workout-tracker/database"
@@ -16,7 +15,6 @@ func SaveWorkout(c *fiber.Ctx) error {
 	if err := c.BodyParser(&workout); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Invalid input"})
 	}
-	fmt.Printf("Parsed workout: %v\n", workout) // this line never prints so the BodyParser to workout does not work properly
 
 	if workout.Status == "completed" && workout.EndedAt == nil {
 		now := time.Now()
