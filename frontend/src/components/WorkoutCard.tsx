@@ -104,8 +104,8 @@ function WorkoutCard({ name }: WorkoutCardProps) {
         className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
         placeholder="Notes"
       />
-      <div className="flex items-center justify-between">
-        <button className="btn mt-3 mr-3" onClick={handleAddSet}>
+      <div className="mt-1 flex items-center justify-between border">
+        <button className="btn" onClick={handleAddSet}>
           Add Set
         </button>
         <Timer></Timer>
