@@ -3,33 +3,53 @@ import InputNumber from "./InputNumber";
 
 function Timer() {
   const [isRunning, setIsRunning] = useState(false);
-  const [isStarted, setIsStarted] = useState(false);
   const [timeSeconds, setTimeSeconds] = useState(0);
+  const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
+    let interval: number;
     if (isRunning) {
-      // make this intervall stuff here
+      interval = setInterval(() => {
+        setTimeSeconds((prev) => {
+          if (prev <= 0) {
+            clearInterval(interval);
+            setIsRunning(false);
+            return 0;
+          }
+          return prev - 10;
+        });
+      }, 10);
     }
+
+    return () => clearInterval(interval);
   }, [isRunning]);
 
   function start() {
-    setIsStarted(true);
+    if (timeSeconds <= 0) return;
     setIsRunning(true);
-
-    formatTime(timeSeconds);
+    setIsStarted(true);
   }
+
   function stop() {
     setIsRunning(false);
   }
-  function pause() {
-    setIsRunning(false);
-  }
+
   function reset() {
     setIsRunning(false);
+    setIsStarted(false);
+    setTimeSeconds(0);
   }
+
   function formatTime(time: number) {
-    const minutes = time / 60;
-    return `00:00:00`;
+    const milliseconds = time % 1000;
+    const totalSeconds = Math.floor(time / 1000);
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60);
+
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0",
+    )}:${String(milliseconds).padStart(3, "0")}`;
   }
 
   // if Timer Did Not start yet display the input field for seconds
@@ -49,7 +69,7 @@ function Timer() {
 
   return (
     <div className="stopwatch flex items-center justify-center">
-      <div className="display">{formatTime()}</div>
+      <div className="display">{formatTime(timeSeconds)}</div>
       <button onClick={stop} className="btn btn-s">
         Stop
       </button>
