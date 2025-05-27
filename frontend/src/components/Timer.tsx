@@ -14,6 +14,7 @@ function Timer() {
           if (prev <= 0) {
             clearInterval(interval);
             setIsRunning(false);
+            setIsStarted(false);
             return 0;
           }
           return prev - 10;
@@ -49,7 +50,7 @@ function Timer() {
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
       "0",
-    )}:${String(milliseconds).padStart(3, "0")}`;
+    )}:${String(milliseconds / 10).padStart(2, "0")}`;
   }
 
   // if Timer Did Not start yet display the input field for seconds

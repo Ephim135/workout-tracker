@@ -1,6 +1,7 @@
 import { useActiveWorkout } from "../context/useActiveWorkout";
 import type { WorkoutSet } from "../context/types";
 import Timer from "./Timer.tsx";
+import { useState } from "react";
 
 type WorkoutCardProps = {
   name: string;
@@ -14,14 +15,14 @@ type WorkoutSetRowProps = {
     field: "reps" | "weight" | "setType",
     value: string,
   ) => void;
-  onRemove: (index: number) => void;
   onCheckbox: (index: number, checked: boolean) => void;
 };
 
 const gridLayout =
   "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
 
-function WorkoutCard({ name }: WorkoutCardProps) {
+function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
+  const [notes, setNotes] = useState<boolean>(false);
   const { activeWorkout, addSet, removeSet, removeExercise, updateSet } =
     useActiveWorkout();
 
@@ -44,8 +45,8 @@ function WorkoutCard({ name }: WorkoutCardProps) {
     addSet(newSet, name);
   };
 
-  const handleRemoveSet = (index: number) => {
-    removeSet(index, name);
+  const handleAddNotes = () => {
+    setNotes(true);
   };
 
   const handleRemoveCard = () => {
@@ -60,6 +61,10 @@ function WorkoutCard({ name }: WorkoutCardProps) {
     field: "reps" | "weight" | "setType",
     value: string,
   ) => {
+    if (field === "setType" && value === "delete") {
+      removeSet(index, name);
+      return;
+    }
     // For reps and weight, convert string to number safely
     if (field === "reps" || field === "weight") {
       // Validate input is numeric (already done)
@@ -98,16 +103,26 @@ function WorkoutCard({ name }: WorkoutCardProps) {
           x
         </button>
       </div>
-
-      <input
-        type="text"
-        className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
-        placeholder="Notes"
-      />
+      {notes ? (
+        <input
+          type="text"
+          className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+          placeholder="Notes"
+        />
+      ) : (
+        <></>
+      )}
       <div className="mt-1 flex items-center justify-between border">
         <button className="btn" onClick={handleAddSet}>
           Add Set
         </button>
+        {notes ? (
+          <></>
+        ) : (
+          <button className="btn" onClick={handleAddNotes}>
+            Add Notes
+          </button>
+        )}
         <Timer></Timer>
       </div>
       {exercise.sets.map((set, index) => (
@@ -116,7 +131,6 @@ function WorkoutCard({ name }: WorkoutCardProps) {
           index={index}
           set={set}
           onChange={handleSetChange}
-          onRemove={handleRemoveSet}
           onCheckbox={handleCheckboxChange}
         />
       ))}
@@ -131,7 +145,6 @@ function WorkoutSetRow({
   index,
   set,
   onChange,
-  onRemove,
   onCheckbox,
 }: WorkoutSetRowProps) {
   return (
@@ -143,9 +156,10 @@ function WorkoutSetRow({
           onChange(index, "setType", e.target.value);
         }}
       >
-        <option value="warmup">W</option>
-        <option value="dropset">D</option>
-        <option value="working">Set {index + 1}</option>
+        <option value="warmup">WarmUp</option>
+        <option value="dropset">Drop</option>
+        <option value="working">Normal</option>
+        <option value="delete">Delete</option>
       </select>
       <p className="text-center">{index + 1}</p>
       <input
@@ -173,12 +187,6 @@ function WorkoutSetRow({
           checked={set.completed}
           onChange={(e) => onCheckbox(index, e.target.checked)}
         />
-        <button
-          className="btn btn-xs bg-transparent text-red-700 shadow-none"
-          onClick={() => onRemove(index)}
-        >
-          x
-        </button>
       </div>
     </div>
   );
