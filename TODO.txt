@@ -1,5 +1,5 @@
 // Current TODO //
-Finish Timer component
+- 
 
 Backend
 - decide if using 2 or 1 JWT ✅
@@ -69,6 +69,11 @@ Profile Page
     - Delete Account
 - Community Info
 
+Search
+- for Exercises
+
+Footer
+- simple 
 
 Key combos i want to learn
 space c r // rename
@@ -82,3 +87,97 @@ XXX 14. 8:40
 
 MAKE THE WEBSITE A GUIDE TO START THE GYM WITH STEP BY STEP HOW TO DO IT
 WITH MOTIVATION WHY EVERYONE CAN DO IT HOW TO DO IT 
+
+
+📡 FTTH / Fiber
+„Handelt es sich um echtes FTTH, also Glasfaser bis in die Wohnung?“
+
+„Welche Technik wird genau verwendet – FTTH, FTTB oder nur VDSL/Kabel?“
+
+⚡ Speed (z. B. 100.000 Leitung) & Upload
+„Wie hoch ist die garantierte Upload-Geschwindigkeit bei der 100.000er Leitung?“
+
+„Ist die Geschwindigkeit auch zu Stoßzeiten stabil oder wird sie dann gedrosselt?“
+
+🧱 Stabilität
+„Wie stabil ist die Verbindung in meiner Straße – gibt es bekannte Probleme?“
+
+„Kann es zu regelmäßigen Ausfällen oder hohen Latenzen am Abend kommen?“
+
+💰 Preis & Vertragslaufzeit
+„Wie hoch sind die monatlichen Kosten nach Ablauf der Anfangsvergünstigung?“
+
+„Wie lange läuft der Vertrag und wie ist die Kündigungsfrist?“
+
+🧾 Versteckte Kosten
+„Fallen einmalige Kosten an, z. B. für den Anschluss, Techniker oder Versand?“
+
+„Ist der Router im Preis enthalten oder kostet er extra?“
+
+📉 Fair-Use-Policy / Drosselung
+„Gibt es eine Fair-Use-Policy oder Datenlimits trotz ‚unbegrenzt‘?“
+
+„Wird meine Leitung gedrosselt, wenn ich viel streame oder downloade?“
+
+☎️ Support
+„Wie erreiche ich den Kundenservice im Problemfall – auch abends oder am Wochenende?“
+
+„Gibt es eine garantierte Reaktionszeit bei Störungen?“
+
+📦 Router / Hardware
+„Wird ein Router mitgeliefert, und kann ich alternativ meinen eigenen nutzen?“
+
+„Fallen für den Router monatliche Mietkosten an?“
+
+🌐 Statische IP
+„Kann ich bei Ihnen eine statische IP-Adresse bekommen?“
+
+„Ist eine feste IP im Tarif enthalten oder gegen Aufpreis buchbar?“
+
+🛡️ VPN / Zusatzdienste
+„Unterstützt Ihre Verbindung VPN-Dienste ohne Einschränkungen?“
+
+„Sind Sicherheitsfunktionen wie VPN, Firewall oder Jugendschutz enthalten?“
+
+You said:
+FTTH, FTTB oder nur VDSL/Kabel unterschiede ? 
+
+✅ 1. FTTH (Fiber to the Home)
+➡️ Glasfaser direkt bis in deine Wohnung
+
+Beste Option
+
+Extrem schnell (1 Gbit/s und mehr)
+
+Sehr stabil, geringe Latenz, keine Dämpfung
+
+Nicht geteilt mit Nachbarn
+
+Zukunftssicher
+
+💡 Beispiel: Glasfaseranschluss endet an deiner Wohnungsdose. Maximale Qualität.
+
+✅ 2. FTTB (Fiber to the Building)
+➡️ Glasfaser bis ins Haus, dann Kupfer (z. B. LAN oder Telefonleitung) bis zur Wohnung
+
+Schneller als VDSL, aber nicht ganz wie FTTH
+
+Etwas höhere Latenz, leicht gedämpfte Geschwindigkeit
+
+Besser als VDSL/Kabel, aber Shared-Medium möglich
+
+💡 Beispiel: Glasfaser im Keller, dann weiter per Kupfer oder Ethernet zu dir.
+
+⚠️ 3. VDSL / Supervectoring (Telefonleitung)
+➡️ Glasfaser nur bis zum Verteilerkasten in der Straße, Rest per Kupfer
+
+Max. ca. 250 Mbit/s (theoretisch)
+
+Leistungsabfall mit Entfernung vom Verteiler
+
+Latenz höher als bei Glasfaser
+
+Stark wetterabhängig
+
+💡 Beispiel: "DSL 100.000" über die alte Telefonleitung.
+

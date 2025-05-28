@@ -45,8 +45,8 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
     addSet(newSet, name);
   };
 
-  const handleAddNotes = () => {
-    setNotes(true);
+  const handleToggleNotes = () => {
+    setNotes(!notes);
   };
 
   const handleRemoveCard = () => {
@@ -99,16 +99,24 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
     <div className="mb-2 max-w-xl rounded border bg-gray-400 p-2 text-black">
       <div className="flex">
         <h1 className="text-xl font-bold text-black">{name}</h1>
-        <button className="btn-xs btn ml-auto" onClick={handleRemoveCard}>
+        <button
+          className="btn-xs btn ml-auto border-none bg-transparent text-2xl text-black shadow-none"
+          onClick={handleRemoveCard}
+        >
           x
         </button>
       </div>
       {notes ? (
-        <input
-          type="text"
-          className="mt-2 w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
-          placeholder="Notes"
-        />
+        <div className="mt-2 flex border-1">
+          <input
+            type="text"
+            className="w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+            placeholder="Notes"
+          />
+          <button onClick={handleToggleNotes} className="btn">
+            Hide Notes
+          </button>
+        </div>
       ) : (
         <></>
       )}
@@ -119,7 +127,7 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
         {notes ? (
           <></>
         ) : (
-          <button className="btn" onClick={handleAddNotes}>
+          <button className="btn" onClick={handleToggleNotes}>
             Add Notes
           </button>
         )}
