@@ -22,9 +22,16 @@ const gridLayout =
   "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
 
 function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
+  const [note, setNote] = useState<string>("");
   const [notes, setNotes] = useState<boolean>(false);
-  const { activeWorkout, addSet, removeSet, removeExercise, updateSet } =
-    useActiveWorkout();
+  const {
+    activeWorkout,
+    addSet,
+    removeSet,
+    removeExercise,
+    updateSet,
+    updateNotes,
+  } = useActiveWorkout();
 
   const exercise = activeWorkout.exerciseEntries.find(
     (entry) => entry.name === name,
@@ -47,6 +54,13 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
 
   const handleToggleNotes = () => {
     setNotes(!notes);
+  };
+
+  const handleSaveNotes = (note: string) => {
+    // toggle Notes
+    setNotes(!notes);
+    // save Notes to context
+    updateNotes(name, note);
   };
 
   const handleRemoveCard = () => {
@@ -107,31 +121,35 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
         </button>
       </div>
       {notes ? (
-        <div className="mt-2 flex border-1">
+        <div className="mt-2 flex gap-2">
           <input
             type="text"
-            className="w-full rounded border-3 border-black px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
+            className="w-full rounded border-3 px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
             placeholder="Notes"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
           />
-          <button onClick={handleToggleNotes} className="btn">
-            Hide Notes
+          <button onClick={() => handleSaveNotes(note)} className="btn">
+            Save & Hide
           </button>
         </div>
       ) : (
         <></>
       )}
-      <div className="mt-1 flex items-center justify-between border">
+      <div className="mt-1 flex items-center">
         <button className="btn" onClick={handleAddSet}>
-          Add Set
+          Set +
         </button>
         {notes ? (
           <></>
         ) : (
-          <button className="btn" onClick={handleToggleNotes}>
-            Add Notes
+          <button className="btn ml-1" onClick={handleToggleNotes}>
+            Notes
           </button>
         )}
-        <Timer></Timer>
+        <div className="ml-auto">
+          <Timer></Timer>
+        </div>
       </div>
       {exercise.sets.map((set, index) => (
         <WorkoutSetRow
@@ -142,7 +160,6 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
           onCheckbox={handleCheckboxChange}
         />
       ))}
-      {/* <button className="btn mt-3 text-lg">Copy Last Workout</button> */}
     </div>
   );
 }

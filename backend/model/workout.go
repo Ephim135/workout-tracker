@@ -28,6 +28,7 @@ type ExerciseEntry struct {
 	ExerciseID uint `gorm:"not null" json:"exerciseId"` // Links to Exercise
 	Name string `gorm:"-" json:"name"`
 	Sets []WorkoutSet `gorm:"foreignKey:ExerciseEntryID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;" json:"sets"`
+	Notes string `gorm:"type:text" json:"notes"`
 }
 
 type WorkoutSet struct {

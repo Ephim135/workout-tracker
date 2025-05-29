@@ -147,6 +147,23 @@ export const ActiveWorkoutProvider = ({
     });
   };
 
+  const updateNotes = (name: string, note: string) => {
+    setActiveWorkout((prev) => {
+      return {
+        ...prev,
+        exerciseEntries: prev.exerciseEntries.map((exercise) => {
+          // skip exercises we dont want to edit
+          if (name !== exercise.name) return exercise;
+          // put the exercise back in place then update the note
+          return {
+            ...exercise,
+            notes: note,
+          };
+        }),
+      };
+    });
+  };
+
   return (
     <ActiveWorkoutContext.Provider
       value={{
@@ -159,6 +176,7 @@ export const ActiveWorkoutProvider = ({
         saveActiveWorkout,
         clearActiveWorkout,
         setStatus,
+        updateNotes,
       }}
     >
       {children}

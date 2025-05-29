@@ -56,7 +56,7 @@ function Timer() {
   // if Timer Did Not start yet display the input field for seconds
   if (!isStarted) {
     return (
-      <div className="stopwatch flex items-center justify-center">
+      <div className="stopwatch flex items-center justify-center gap-2">
         <InputNumber
           timeSeconds={timeSeconds}
           onChange={setTimeSeconds}
@@ -82,8 +82,8 @@ function Timer() {
   }
 
   return (
-    <div className="stopwatch flex items-center justify-center">
-      <div className="display">{formatTime(timeSeconds)}</div>
+    <div className="stopwatch flex items-center justify-center gap-2">
+      <div className="display text-xl font-bold">{formatTime(timeSeconds)}</div>
       <button onClick={stop} className="btn btn-square">
         <svg
           xmlns="http://www.w3.org/2000/svg"

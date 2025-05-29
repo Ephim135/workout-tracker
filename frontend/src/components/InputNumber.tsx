@@ -5,10 +5,10 @@ type InputNumberProps = {
 
 function InputNumber({ timeSeconds, onChange }: InputNumberProps) {
   return (
-    <div className="relative mr-1 flex max-w-[8rem] items-center">
+    <div className="relative flex max-w-[8rem] items-center">
       <button
         type="button"
-        className="h-10 rounded-s-lg border border-gray-300 bg-black p-3 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+        className="bg-base-200 h-10 cursor-pointer rounded-s-lg border p-3 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
         onClick={() => {
           if (timeSeconds >= 1000) {
             onChange(timeSeconds - 1000);
@@ -33,7 +33,7 @@ function InputNumber({ timeSeconds, onChange }: InputNumberProps) {
       </button>
       <input
         type="text"
-        className="block h-10 w-full border-x-0 border-gray-300 bg-black py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+        className="bg-base-200 block h-10 w-full border-x-0 py-2.5 text-center text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
         placeholder={"999"}
         maxLength={3}
         value={timeSeconds / 1000}
@@ -48,7 +48,7 @@ function InputNumber({ timeSeconds, onChange }: InputNumberProps) {
       />
       <button
         type="button"
-        className="h-10 rounded-e-lg border border-gray-300 bg-black p-3 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+        className="bg-base-200 h-10 cursor-pointer rounded-e-lg border p-3 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
         onClick={() => {
           if (timeSeconds < 1000000) {
             onChange(timeSeconds + 1 * 1000);

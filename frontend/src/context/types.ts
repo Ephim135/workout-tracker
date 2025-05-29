@@ -12,6 +12,7 @@ export interface ActiveWorkoutCtx {
   saveActiveWorkout: () => void;
   clearActiveWorkout: () => void;
   setStatus: (status: "active" | "completed") => void;
+  updateNotes: (exerciseName: string, note: string) => void;
 }
 
 export interface ActiveWorkout {
@@ -24,6 +25,7 @@ export interface ActiveWorkout {
 export interface ExerciseEntry {
   exerciseId: number;
   name: string; // not optional cause we need name for Workout card
+  notes: string;
   sets: WorkoutSet[];
 }
 
