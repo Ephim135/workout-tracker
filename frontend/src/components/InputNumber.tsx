@@ -6,7 +6,7 @@ type InputNumberProps = {
 function InputNumber({ timeSeconds, onChange }: InputNumberProps) {
   return (
     <div className="relative flex max-w-[8rem] items-center">
-      <button
+      <button // Minus BUTTON
         type="button"
         className="bg-base-200 h-10 cursor-pointer rounded-s-lg border p-3 hover:bg-gray-200 focus:ring-2 focus:ring-gray-100 focus:outline-none dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
         onClick={() => {

@@ -42,7 +42,7 @@ function Timer() {
   }
 
   function formatTime(time: number) {
-    const milliseconds = time % 1000;
+    // const milliseconds = time % 1000;
     const totalSeconds = Math.floor(time / 1000);
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60);
@@ -50,7 +50,8 @@ function Timer() {
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
       2,
       "0",
-    )}:${String(milliseconds / 10).padStart(2, "0")}`;
+    )}`;
+    // ${String(milliseconds / 10).padStart(2, "0")}
   }
 
   // if Timer Did Not start yet display the input field for seconds
@@ -61,8 +62,8 @@ function Timer() {
           timeSeconds={timeSeconds}
           onChange={setTimeSeconds}
         ></InputNumber>
-        <button onClick={start} className="btn btn-square">
-          <svg
+        <button onClick={start} className="btn">
+          {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="white"
             viewBox="0 0 24 24"
@@ -75,7 +76,8 @@ function Timer() {
               strokeLinejoin="round"
               d="M5 3v18l15-9L5 3z"
             />
-          </svg>
+          </svg> */}{" "}
+          Timer
         </button>
       </div>
     );
