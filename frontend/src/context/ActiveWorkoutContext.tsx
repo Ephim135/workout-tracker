@@ -147,7 +147,7 @@ export const ActiveWorkoutProvider = ({
     });
   };
 
-  const updateNotes = (name: string, note: string) => {
+  const updateNote = (name: string, note: string) => {
     setActiveWorkout((prev) => {
       return {
         ...prev,
@@ -176,7 +176,7 @@ export const ActiveWorkoutProvider = ({
         saveActiveWorkout,
         clearActiveWorkout,
         setStatus,
-        updateNotes,
+        updateNote,
       }}
     >
       {children}

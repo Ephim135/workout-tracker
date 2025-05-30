@@ -42,7 +42,6 @@ function Timer() {
   }
 
   function formatTime(time: number) {
-    // const milliseconds = time % 1000;
     const totalSeconds = Math.floor(time / 1000);
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60);
@@ -51,7 +50,6 @@ function Timer() {
       2,
       "0",
     )}`;
-    // ${String(milliseconds / 10).padStart(2, "0")}
   }
 
   // if Timer Did Not start yet display the input field for seconds

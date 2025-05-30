@@ -1,37 +1,16 @@
 import { useActiveWorkout } from "../context/useActiveWorkout";
 import type { WorkoutSet } from "../context/types";
-import Timer from "./Timer.tsx";
-import { useState } from "react";
+import WorkoutSetRow from "./WorkoutSetRow.tsx";
+import WorkoutCardHeader from "./WorkoutCardHeader.tsx";
+import WorkoutCardUtility from "./WorkoutCardUtility.tsx";
 
 type WorkoutCardProps = {
   name: string;
 };
 
-type WorkoutSetRowProps = {
-  index: number;
-  set: WorkoutSet;
-  onChange: (
-    index: number,
-    field: "reps" | "weight" | "setType",
-    value: string,
-  ) => void;
-  onCheckbox: (index: number, checked: boolean) => void;
-};
-
-const gridLayout =
-  "items-center grid grid-cols-[0.5fr_1fr_1fr_1fr_0.5fr] gap-4";
-
 function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
-  const [note, setNote] = useState<string>("");
-  const [notes, setNotes] = useState<boolean>(false);
-  const {
-    activeWorkout,
-    addSet,
-    removeSet,
-    removeExercise,
-    updateSet,
-    updateNotes,
-  } = useActiveWorkout();
+  const { activeWorkout, addSet, removeSet, removeExercise, updateSet } =
+    useActiveWorkout();
 
   const exercise = activeWorkout.exerciseEntries.find(
     (entry) => entry.name === name,
@@ -50,17 +29,6 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
       completed: false,
     };
     addSet(newSet, name);
-  };
-
-  const handleToggleNotes = () => {
-    setNotes(!notes);
-  };
-
-  const handleSaveNotes = (note: string) => {
-    // toggle Notes
-    setNotes(!notes);
-    // save Notes to context
-    updateNotes(name, note);
   };
 
   const handleRemoveCard = () => {
@@ -111,46 +79,14 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
 
   return (
     <div className="mb-2 max-w-xl rounded border bg-gray-400 p-2 text-black">
-      <div className="flex">
-        <h1 className="text-xl font-bold text-black">{name}</h1>
-        <button
-          className="btn-xs btn ml-auto border-none bg-transparent text-2xl text-black shadow-none"
-          onClick={handleRemoveCard}
-        >
-          x
-        </button>
-      </div>
-      {notes ? (
-        <div className="mt-2 flex gap-2">
-          <input
-            type="text"
-            className="w-full rounded border-3 px-2 py-1 text-black placeholder-black focus:border-blue-500 focus:shadow-md focus:outline-none"
-            placeholder="Notes"
-            value={note}
-            onChange={(e) => setNote(e.target.value)}
-          />
-          <button onClick={() => handleSaveNotes(note)} className="btn">
-            Save & Hide
-          </button>
-        </div>
-      ) : (
-        <></>
-      )}
-      <div className="mt-1 flex items-center">
-        <button className="btn" onClick={handleAddSet}>
-          Set +
-        </button>
-        {notes ? (
-          <></>
-        ) : (
-          <button className="btn ml-1" onClick={handleToggleNotes}>
-            Notes
-          </button>
-        )}
-        <div className="ml-auto">
-          <Timer></Timer>
-        </div>
-      </div>
+      <WorkoutCardHeader
+        name={name}
+        handleRemoveCard={handleRemoveCard}
+      ></WorkoutCardHeader>
+      <WorkoutCardUtility
+        handleAddSet={handleAddSet}
+        name={name}
+      ></WorkoutCardUtility>
       {exercise.sets.map((set, index) => (
         <WorkoutSetRow
           key={index}
@@ -165,54 +101,3 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
 }
 
 export default WorkoutCard;
-
-function WorkoutSetRow({
-  index,
-  set,
-  onChange,
-  onCheckbox,
-}: WorkoutSetRowProps) {
-  return (
-    <div className={`${gridLayout} mt-3`}>
-      <select
-        className="rounded border"
-        value={set.setType}
-        onChange={(e) => {
-          onChange(index, "setType", e.target.value);
-        }}
-      >
-        <option value="warmup">WarmUp</option>
-        <option value="dropset">Drop</option>
-        <option value="working">Normal</option>
-        <option value="delete">Delete</option>
-      </select>
-      <p className="text-center">{index + 1}</p>
-      <input
-        type="text"
-        inputMode="numeric"
-        maxLength={3}
-        pattern="[0-9]*"
-        value={set.reps}
-        className="w-full rounded border-1 border-black text-center text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
-        onChange={(e) => onChange(index, "reps", e.target.value)}
-      ></input>
-      <input
-        type="text"
-        inputMode="numeric"
-        maxLength={3}
-        pattern="[0-9]*"
-        value={set.weight}
-        className="w-full rounded border-1 border-black text-center text-black focus:border-blue-500 focus:shadow-md focus:outline-none"
-        onChange={(e) => onChange(index, "weight", e.target.value)}
-      ></input>
-      <div className="flex justify-evenly">
-        <input
-          type="checkbox"
-          className="checkbox checkbox-md checkbox-neutral"
-          checked={set.completed}
-          onChange={(e) => onCheckbox(index, e.target.checked)}
-        />
-      </div>
-    </div>
-  );
-}

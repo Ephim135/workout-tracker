@@ -19,6 +19,7 @@ function ExerciseList({ name, target_muscles, id }: ExerciseType) {
         exerciseId: id,
         name: name,
         sets: [],
+        notes: "",
       });
     }
     setSelected(!selected);
