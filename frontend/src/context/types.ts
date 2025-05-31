@@ -13,6 +13,7 @@ export interface ActiveWorkoutCtx {
   clearActiveWorkout: () => void;
   setStatus: (status: "active" | "completed") => void;
   updateNote: (exerciseName: string, note: string) => void;
+  swapExercises: (index1: number, index2: number) => void;
 }
 
 export interface ActiveWorkout {

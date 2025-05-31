@@ -69,8 +69,8 @@ func Login(c *fiber.Ctx) error {
 		Value:    rawRefreshToken,
 		Expires:  time.Now().Add(30 * 24 * time.Hour),
 		HTTPOnly: true,
-		Secure:   false, // cookies are only send over https
-		SameSite: "Lax",
+		Secure:   true,
+		SameSite: "None",
 		Path:     "/api/auth/refresh",
 	})
 	c.Cookie(&fiber.Cookie{
@@ -78,8 +78,8 @@ func Login(c *fiber.Ctx) error {
 		Value:    accessToken,
 		Expires:  time.Now().Add(1 * time.Minute),
 		HTTPOnly: true,
-		Secure:   false,
-		SameSite: "Lax",
+		Secure:   true,
+		SameSite: "None",
 		Path:     "/",
 	})
 

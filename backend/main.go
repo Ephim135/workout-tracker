@@ -28,5 +28,6 @@ func main() {
 
 	router.SetupRoutes(app)
 
-	log.Fatal(app.Listen("0.0.0.0:3000"))
+	log.Fatal(app.ListenTLS(":3000", "localhost.pem", "localhost-key.pem"))
+	// log.Fatal(app.Listen("0.0.0.0:3000"))
 }

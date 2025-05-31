@@ -1,8 +1,9 @@
-import { useActiveWorkout } from "../context/useActiveWorkout";
-import type { WorkoutSet } from "../context/types";
+import { useActiveWorkout } from "../../context/useActiveWorkout.tsx";
+import type { WorkoutSet } from "../../context/types.ts";
 import WorkoutSetRow from "./WorkoutSetRow.tsx";
 import WorkoutCardHeader from "./WorkoutCardHeader.tsx";
 import WorkoutCardUtility from "./WorkoutCardUtility.tsx";
+import { defaultSet } from "../../lib/helper.ts";
 
 type WorkoutCardProps = {
   name: string;
@@ -21,14 +22,8 @@ function WorkoutCard({ name = "Default Squad" }: WorkoutCardProps) {
   }
 
   const handleAddSet = () => {
-    const newSet: WorkoutSet = {
-      setNumber: exercise.sets.length + 1,
-      reps: 8,
-      weight: 0,
-      setType: "working",
-      completed: false,
-    };
-    addSet(newSet, name);
+    const set = defaultSet(exercise.sets.length + 1);
+    addSet(set, name);
   };
 
   const handleRemoveCard = () => {

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 function ProfileForm() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
+    name: "",
     age: "",
     gender: "",
     height: "",
@@ -48,6 +49,14 @@ function ProfileForm() {
       onSubmit={handleSubmit}
       className="mx-auto max-w-sm space-y-3 rounded p-4 shadow"
     >
+      <input
+        type="text"
+        name="name"
+        value={profile.name}
+        onChange={handleChange}
+        placeholder="Name"
+        className="w-full rounded border p-2"
+      />
       <input
         type="number"
         name="age"

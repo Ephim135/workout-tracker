@@ -4,17 +4,22 @@
 - notes borders remove ✅
 - change bg color on hover ✅
 - actually save the notes put them into the context ✅
-- make the Name bigger
+- make the Exercise Name bigger ✅
 - save notes button has no styling ✅
-- move exercise up and down
-- Timers do stop each other
-- make Profile updatable
-- make Stop Button be Play button when pressed in the Timer
-- make the Name of the Exercise Clickable to show how to do the Exercise
-- make new Exercises Creatable
-- The Note should only be saved in the context 1 Source of truth
+- Fix the Index of Exercises ✅
+- move exercise up and down ✅
+- The Note should only be saved in the context 1 Source of truth ✅
+- load note into input field
+- Create Workout Template
+- Fix Profile Basic Page
+- Fix Navbar Make it Clean
+- Fix Logo Not loading sometimes
+- Put more Exercises in The database
 
-REFACTOR !!!!
+Timer
+- Put Timer Seperate not every Card one sidebar
+- make Stop Button be Play button when pressed in the Timer
+
 
 Backend
 - decide if using 2 or 1 JWT ✅
@@ -40,19 +45,13 @@ ActiveWorkout
 - input field number in the middle ✅
 - make layout better ✅
 - finish button positioning ✅
-- timer for pause and timer for workout
 - give the right userId ✅
-- Add Set button maby next to Notes ?
-    Timer
-    - start adjust stop
-- Make a Function that creates DefaultSets
 - make strings to ints for reps and weight ✅
 
 
 Frontend
 - Navbar is bad on small devices ✅
 - make a LOGO ✅
-- (make Settings)
 - save the userId in authContext
 
 Profile Page
@@ -84,11 +83,15 @@ Profile Page
     - Delete Account
 - Community Info
 
-Search
-- for Exercises
 
 Footer
-- simple 
+
+Not MVP
+- make new Exercises Creatable
+- make the Name of the Exercise Clickable to show how to do the Exercise
+
+Search
+- for Exercises
 
 Key combos i want to learn
 space c r // rename

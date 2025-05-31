@@ -1,5 +1,5 @@
-import { WorkoutSet } from "../context/types";
-import { GRID_LAYOUT } from "../lib/Constants";
+import { WorkoutSet } from "../../context/types";
+import { GRID_LAYOUT } from "../../lib/Constants";
 
 type WorkoutSetRowProps = {
   index: number;

@@ -1,4 +1,4 @@
-import WorkoutCard from "../components/WorkoutCard";
+import WorkoutCard from "../components/WorkoutCard/WorkoutCard.tsx";
 import { useActiveWorkout } from "../context/useActiveWorkout";
 import { Link } from "react-router-dom";
 

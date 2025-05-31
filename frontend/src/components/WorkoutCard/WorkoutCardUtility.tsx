@@ -1,6 +1,6 @@
-import Timer from "./Timer.tsx"; // Assuming Timer is a component in the same dir
 import { useState } from "react";
-import { useActiveWorkout } from "../context/useActiveWorkout.tsx";
+import { useActiveWorkout } from "../../context/useActiveWorkout.tsx";
+import MoveCardUpDownButtons from "./MoveCardUpDownButtons.tsx";
 
 type WorkoutCardUtilityProps = {
   handleAddSet: () => void;
@@ -46,7 +46,7 @@ export default function WorkoutCardUtility({
           </button>
         )}
         <div className="ml-auto">
-          <Timer />
+          <MoveCardUpDownButtons name={name}></MoveCardUpDownButtons>
         </div>
       </div>
     </div>

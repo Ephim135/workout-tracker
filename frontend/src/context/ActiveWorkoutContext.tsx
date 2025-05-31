@@ -2,6 +2,7 @@ import { ReactNode, useState } from "react";
 import type { ExerciseEntry, WorkoutSet, ActiveWorkout } from "./types";
 import { ActiveWorkoutContext } from "./useActiveWorkout.tsx";
 import { useAuth } from "./AuthContext.tsx";
+import { defaultSet } from "../lib/helper.ts";
 
 export const ActiveWorkoutProvider = ({
   children,
@@ -16,14 +17,6 @@ export const ActiveWorkoutProvider = ({
     exerciseEntries: [],
     status: "active",
   });
-
-  const defaultSet: WorkoutSet = {
-    setNumber: 1, // how to make the set number increase accordingly
-    reps: 8,
-    weight: 0,
-    setType: "working",
-    completed: false,
-  };
 
   const setStatus = (status: "completed" | "active") => {
     setActiveWorkout((prev) => ({
@@ -42,7 +35,7 @@ export const ActiveWorkoutProvider = ({
 
       const exerciseWithDefaults = {
         ...newExercise,
-        sets: [defaultSet, defaultSet],
+        sets: [defaultSet(1), defaultSet(2)],
       };
 
       return {
@@ -59,6 +52,26 @@ export const ActiveWorkoutProvider = ({
         (exercise) => exercise.name !== name,
       ),
     }));
+  };
+
+  const swapExercises = (index1: number, index2: number) => {
+    setActiveWorkout((prev) => {
+      const updated = [...prev.exerciseEntries];
+      // bounds check
+      if (
+        index1 < 0 ||
+        index2 < 0 ||
+        index1 >= updated.length ||
+        index2 >= updated.length
+      )
+        return prev;
+      // swap
+      [updated[index1], updated[index2]] = [updated[index2], updated[index1]];
+      return {
+        ...prev,
+        exerciseEntries: updated,
+      };
+    });
   };
 
   const addSet = (newSet: WorkoutSet, exerciseName: string) => {
@@ -177,6 +190,7 @@ export const ActiveWorkoutProvider = ({
         clearActiveWorkout,
         setStatus,
         updateNote,
+        swapExercises,
       }}
     >
       {children}

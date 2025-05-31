@@ -2,20 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useActiveWorkout } from "../context/useActiveWorkout";
 
-type ExerciseType = {
+type ExerciseListProps = {
   name: string;
   target_muscles: string;
   id: number;
 };
 
-function ExerciseList({ name, target_muscles, id }: ExerciseType) {
+function ExerciseList({ name, target_muscles, id }: ExerciseListProps) {
   const [selected, setSelected] = useState(false);
-  const activeWorkoutContext = useActiveWorkout();
+  const { addExercise } = useActiveWorkout();
 
   const handleSelect = () => {
     // when the exercise gets selected it will be added to context state
     if (!selected) {
-      activeWorkoutContext.addExercise({
+      addExercise({
         exerciseId: id,
         name: name,
         sets: [],
